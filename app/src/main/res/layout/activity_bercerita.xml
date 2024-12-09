@@ -42,7 +42,25 @@
                 android:textSize="18sp"
                 android:textColor="@android:color/black" />
         </LinearLayout>
-
+        <ImageView
+            android:id="@+id/characterImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/mascot_putih"
+            android:layout_gravity="center" />
+        <!-- Speech Bubble -->
+        <TextView
+            android:id="@+id/speechBubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/speech_bubble"
+            android:padding="12dp"
+            android:text="Halo, kamu ingin bercerita apa hari ini?"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
         <!-- Input Section -->
         <EditText
             android:id="@+id/inputField"
@@ -72,6 +90,7 @@
             android:background="@drawable/rounded_edit_text"
             android:padding="12dp"
             android:gravity="start|top"
+            android:layout_marginTop="8dp"
             android:text="Hasil keluaran AI akan tampil di sini."
             android:textColor="@android:color/black"
             android:textSize="16sp" />
