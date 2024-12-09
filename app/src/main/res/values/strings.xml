@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tedu Project</string>
+    <string name="logo" />
+    <string name="reward_banner" />
+    <string name="reward_image" />
+    <string name="card_image" />
 </resources>
