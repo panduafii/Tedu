@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bubble Background -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/holo_blue_dark" />
+            <corners android:radius="8dp" />
+            <padding
+                android:left="16dp"
+                android:top="12dp"
+                android:right="16dp"
+                android:bottom="12dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@android:color/darker_gray" />
+        </shape>
+    </item>
+
+    <!-- Bubble Tail -->
+    <item
+        android:gravity="bottom|left">
+        <shape>
+            <solid android:color="@android:color/holo_blue_dark" />
+            <path
+                android:pathData="M0,0 L16,16 L16,0 Z"
+                android:fillColor="@android:color/holo_blue_dark" />
+        </shape>
+    </item>
+</layer-list>
