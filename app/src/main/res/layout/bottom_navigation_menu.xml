@@ -24,7 +24,7 @@
 
             <!-- Menu Item 1 -->
             <LinearLayout
-                android:id="@+id/menu_library"
+                android:id="@+id/menu_bercerita"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -79,7 +79,7 @@
 
             <!-- Menu Item 4 -->
             <LinearLayout
-                android:id="@+id/menu_statistics"
+                android:id="@+id/menu_report"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
