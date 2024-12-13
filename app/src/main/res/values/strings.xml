@@ -4,4 +4,7 @@
     <string name="reward_banner" />
     <string name="reward_image" />
     <string name="card_image" />
+    <string name="sign_in">Sign In</string>
+    <string name="type_your_password">Type Your Password</string>
+    <string name="not_registered_yet_sign_up">Not Registered Yet , Sign Up !</string>
 </resources>
