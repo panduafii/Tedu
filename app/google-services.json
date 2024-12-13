@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "320740228544",
+    "project_id": "teduproject-5dc72",
+    "storage_bucket": "teduproject-5dc72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320740228544:android:66727942c5de53bc91dc25",
+        "android_client_info": {
+          "package_name": "com.example.loginexample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARcJmlorbhWJ3g0xC17m-y7POSqV9j5JY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320740228544:android:6a281c1732c5397591dc25",
+        "android_client_info": {
+          "package_name": "com.example.teduproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARcJmlorbhWJ3g0xC17m-y7POSqV9j5JY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
