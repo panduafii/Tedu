@@ -2,6 +2,7 @@ package com.example.teduproject
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -11,7 +12,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
-class Report: AppCompatActivity() {
+class Report : AppCompatActivity() {
 
     data class DayXP(
         @SerializedName("day") val day: String,
@@ -25,8 +26,17 @@ class Report: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_report)
+        setContentView(R.layout.activity_report)
 
+        // Setup Bottom Navigation
+        val navigationView = findViewById<View>(R.id.navigationCard)
+        BottomNavigationHelper.setupBottomNavigation(this, navigationView)
+
+        // Setup Line Chart
+        setupLineChart()
+    }
+
+    private fun setupLineChart() {
         val lineChart = findViewById<LineChart>(R.id.lineChart)
 
         // JSON data
