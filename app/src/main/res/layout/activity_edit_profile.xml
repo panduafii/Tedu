@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_background_white"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <!-- User Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/primary_text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Charlotte King"
+            android:enabled="false"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp" />
+
+        <!-- Email Address -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-mail Address"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/primary_text"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="charlotteking@email.com"
+            android:enabled="false"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp" />
+
+        <!-- Password -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/primary_text"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="********"
+                android:enabled="false"
+                android:background="@drawable/edit_text_background"
+                android:padding="12dp"
+                android:inputType="textPassword"
+                android:textColor="@color/primary_text"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnEditPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:backgroundTint="@color/primary"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:padding="8dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
