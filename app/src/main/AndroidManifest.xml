@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TeduProject"
         tools:targetApi="31">
         <activity
+            android:name=".RedeemHistory"
+            android:exported="false" />
+        <activity
             android:name=".Output"
             android:exported="false" />
         <activity
@@ -47,7 +50,6 @@
         <activity android:name=".Reward" />
         <activity android:name=".Report" />
         <activity android:name=".Bercerita" />
-
     </application>
 
 </manifest>
