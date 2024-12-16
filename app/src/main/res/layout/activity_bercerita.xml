@@ -94,63 +94,113 @@
                     android:text="Refresh"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
-
             </LinearLayout>
 
-            <!-- Output Section -->
-            <TextView
-                android:id="@+id/txtBalasan"
+            <LinearLayout
+                android:id="@+id/resultContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Balasan akan muncul di sini"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/txtRangkuman"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Rangkuman akan muncul di sini"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Balasan"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
 
-            <TextView
-                android:id="@+id/txtKecemasan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tingkat kecemasan akan muncul di sini"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                <TextView
+                    android:id="@+id/txtBalasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Balasan akan muncul di sini"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
 
-            <TextView
-                android:id="@+id/txtDepresi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tingkat depresi akan muncul di sini"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rangkuman"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
 
-            <TextView
-                android:id="@+id/txtStress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tingkat stres akan muncul di sini"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                <TextView
+                    android:id="@+id/txtRangkuman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rangkuman akan muncul di sini"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
 
-            <TextView
-                android:id="@+id/txtPoin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Poin akan muncul di sini"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tingkat Kecemasan"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/txtKecemasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tingkat kecemasan akan muncul di sini"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tingkat Depresi"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/txtDepresi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tingkat depresi akan muncul di sini"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tingkat Stres"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/txtStress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tingkat stres akan muncul di sini"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poin"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/txtPoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poin akan muncul di sini"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/tombolSimpan"
@@ -161,7 +211,6 @@
                 android:text="Simpan"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
-
         </LinearLayout>
     </ScrollView>
 

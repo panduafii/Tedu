@@ -1,10 +1,13 @@
 package com.example.teduproject
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -50,6 +53,7 @@ class Bercerita : AppCompatActivity() {
         val etQuestion = findViewById<EditText>(R.id.inputField)
         val btnSubmit = findViewById<Button>(R.id.submitButton)
         val btnSave = findViewById<Button>(R.id.tombolSimpan)
+        val btnRefresh = findViewById<Button>(R.id.tombolRefresh)
         val txtBalasan = findViewById<TextView>(R.id.txtBalasan)
         val txtRangkuman = findViewById<TextView>(R.id.txtRangkuman)
         val txtKecemasan = findViewById<TextView>(R.id.txtKecemasan)
@@ -64,6 +68,40 @@ class Bercerita : AppCompatActivity() {
         var hasilStress = ""
         var hasilPoin = ""
 
+        btnSubmit.visibility = View.VISIBLE
+        btnSave.visibility = View.GONE
+        btnRefresh.visibility = View.GONE
+
+        val handler = Handler(Looper.getMainLooper())
+
+        fun checkResponses() {
+            handler.postDelayed({
+                val allResponsesReady = listOf(
+                    hasilBalasan,
+                    hasilRangkuman,
+                    hasilKecemasan,
+                    hasilDepresi,
+                    hasilStress,
+                    hasilPoin
+                ).all { it.isNotBlank() }
+
+                if (allResponsesReady) {
+                    btnSubmit.visibility = View.GONE
+                    btnSave.visibility = View.VISIBLE
+                    btnRefresh.visibility = View.VISIBLE
+
+                    // Menampilkan resultContainer setelah semua data diterima
+                    val resultContainer = findViewById<LinearLayout>(R.id.resultContainer)
+                    resultContainer.visibility = View.VISIBLE
+
+                    Toast.makeText(this, "Semua data berhasil diperoleh!", Toast.LENGTH_SHORT).show()
+                } else {
+                    checkResponses()  // Jika belum lengkap, ulangi pengecekan
+                }
+            }, 500)
+        }
+
+
         btnSubmit.setOnClickListener {
             val question = etQuestion.text.toString()
 
@@ -72,32 +110,65 @@ class Bercerita : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Toast.makeText(this, "Mengirim pertanyaan...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Mengirim pertanyaan, harap tunggu...", Toast.LENGTH_SHORT).show()
 
+            hasilBalasan = ""
+            hasilRangkuman = ""
+            hasilKecemasan = ""
+            hasilDepresi = ""
+            hasilStress = ""
+            hasilPoin = ""
+
+            txtBalasan.text = "Loading..."
+            txtRangkuman.text = "Loading..."
+            txtKecemasan.text = "Loading..."
+            txtDepresi.text = "Loading..."
+            txtStress.text = "Loading..."
+            txtPoin.text = "Loading..."
+
+            // Panggil semua API
             getBalasan(question) { response ->
-                hasilBalasan = response
-                runOnUiThread { txtBalasan.text = response }
+                if (response.isNotBlank() && response != "Empty response from server") {
+                    hasilBalasan = response
+                    runOnUiThread { txtBalasan.text = response }
+                }
             }
             getRangkuman(question) { response ->
-                hasilRangkuman = response
-                runOnUiThread { txtRangkuman.text = response }
+                if (response.isNotBlank() && response != "Empty response from server") {
+                    hasilRangkuman = response
+                    runOnUiThread { txtRangkuman.text = response }
+                }
             }
             getKecemasan(question) { response ->
-                hasilKecemasan = response
-                runOnUiThread { txtKecemasan.text = response }
+                if (response.isNotBlank() && response != "Empty response from server") {
+                    hasilKecemasan = response
+                    runOnUiThread { txtKecemasan.text = response }
+                }
             }
             getDepresi(question) { response ->
-                hasilDepresi = response
-                runOnUiThread { txtDepresi.text = response }
+                if (response.isNotBlank() && response != "Empty response from server") {
+                    hasilDepresi = response
+                    runOnUiThread { txtDepresi.text = response }
+                }
             }
             getStress(question) { response ->
-                hasilStress = response
-                runOnUiThread { txtStress.text = response }
+                if (response.isNotBlank() && response != "Empty response from server") {
+                    hasilStress = response
+                    runOnUiThread { txtStress.text = response }
+                }
             }
             getPoin(question) { response ->
-                hasilPoin = response
-                runOnUiThread { txtPoin.text = response }
+                if (response.isNotBlank() && response != "Empty response from server") {
+                    hasilPoin = response
+                    runOnUiThread { txtPoin.text = response }
+                }
             }
+
+            checkResponses() // Mulai pengecekan hingga semua respons diterima
+
+            btnSubmit.visibility = View.GONE
+            btnRefresh.visibility = View.VISIBLE
+            btnSave.visibility = View.GONE // Sembunyikan save hingga semua data diterima
         }
 
         btnSave.setOnClickListener {
@@ -126,6 +197,9 @@ class Bercerita : AppCompatActivity() {
             )
         }
 
+        btnRefresh.setOnClickListener {
+            btnSubmit.performClick() // Panggil ulang semua proses submit
+        }
     }
 
     private fun saveToFirebase(

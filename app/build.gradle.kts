@@ -60,6 +60,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
