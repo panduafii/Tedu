@@ -3,6 +3,7 @@ package com.example.teduproject
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -31,6 +32,12 @@ class Report : AppCompatActivity() {
         // Setup Bottom Navigation
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
+
+        // Ambil referensi TextView dari header_bar
+        val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
+
+        // Panggil fungsi untuk mengambil total poin
+        FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
 
         // Setup Line Chart
         setupLineChart()
