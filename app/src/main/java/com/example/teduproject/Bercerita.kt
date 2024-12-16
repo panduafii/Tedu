@@ -25,6 +25,26 @@ class Bercerita : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bercerita)
 
+        // Ambil referensi TextView dari header_bar
+        val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
+
+        // Panggil fungsi untuk mengambil total poin
+        FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
+
+        val navigationView = findViewById<View>(R.id.navigationCard)
+        BottomNavigationHelper.setupBottomNavigation(this, navigationView)
+
+        val txtSpeechBubble = findViewById<TextView>(R.id.speechBubble)
+
+        // Ambil nama pengguna dari Firebase dan perbarui TextView
+        FirebaseHelper.fetchUserName { name ->
+            val greeting = "Halo, $name! Kamu ingin bercerita apa hari ini?"
+            runOnUiThread {
+                txtSpeechBubble.text = greeting
+            }
+        }
+
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         val etQuestion = findViewById<EditText>(R.id.inputField)
@@ -134,19 +154,31 @@ class Bercerita : AppCompatActivity() {
             "timestamp" to System.currentTimeMillis().toString()
         )
 
-        val ceritaRef = database.getReference("users")
-            .child(userId)
-            .child("stories")
-            .push() // Buat kunci unik untuk cerita
+        val userRef = database.getReference("users").child(userId)
+        val ceritaRef = userRef.child("stories").push()
 
+        // Simpan cerita
         ceritaRef.setValue(ceritaData).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "Cerita berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                // Tambahkan poin ke totalPoin
+                userRef.child("totalPoin").get().addOnSuccessListener { snapshot ->
+                    var totalPoin = snapshot.getValue(Int::class.java) ?: 0
+                    totalPoin += hasilPoin.toIntOrNull() ?: 0
+
+                    userRef.child("totalPoin").setValue(totalPoin).addOnCompleteListener { totalTask ->
+                        if (totalTask.isSuccessful) {
+                            Toast.makeText(this, "Cerita berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Gagal memperbarui total poin.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             } else {
                 Toast.makeText(this, "Gagal menyimpan cerita: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     private fun getResponse(apiKey: String, url: String, roleContent: String, question: String, callback: (String) -> Unit) {
         val requestBody = """
@@ -228,14 +260,14 @@ class Bercerita : AppCompatActivity() {
     private fun getBalasan(question: String, callback: (String) -> Unit) {
         val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna. awali jawaban dengan '1'"
+        val roleContent = "Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna."
         getResponse(apiKey, url, roleContent, question, callback)
     }
 
     private fun getRangkuman(question: String, callback: (String) -> Unit) {
         val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "Kamu adalah asisten yang merangkum input pengguna menjadi poin-poin penting. awali jawaban dengan '2'"
+        val roleContent = "Kamu adalah asisten yang merangkum input pengguna menjadi poin-poin penting."
         getResponse(apiKey, url, roleContent, question, callback)
     }
 
