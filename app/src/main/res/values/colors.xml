@@ -13,8 +13,14 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+    <color name="bg_ungu">#B6ACFF</color>
+    <color name="bg_pink">#FFB8FA</color>
+    <color name="bg_hijau">#73D798</color>
+    <color name="bg_kuning">#FABE00</color>
 
-        <color name="primary">#6200EE</color>
+
+
+    <color name="primary">#6200EE</color>
         <color name="background_light">#F5F5F5</color>
         <color name="primary_text">#212121</color>
         <color name="border">#BDBDBD</color>

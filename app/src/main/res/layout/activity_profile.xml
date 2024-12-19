@@ -1,46 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="@color/white"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/rounded_background_white"
-        android:elevation="4dp">
+        android:orientation="vertical">
 
         <!-- Header Section -->
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="16dp">
+            android:layout_marginBottom="16dp">
 
-            <!-- Profile Image -->
             <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_profile_placeholder"
-                android:contentDescription="Profile Image"
-                android:background="@drawable/rounded_background_gray" />
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/header"
+                android:scaleType="centerCrop" />
 
-            <!-- Username -->
-            <TextView
-                android:id="@+id/tvUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Charlotte King"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="12dp"
-                android:textColor="@color/primary_text" />
-        </LinearLayout>
+            <!-- Text Overlay -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Charlotte King"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center" />
+            </LinearLayout>
+        </FrameLayout>
 
         <!-- Mental Health Status -->
         <LinearLayout
@@ -145,12 +158,14 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginBottom="10dp"
                     android:src="@drawable/user" />
 
                 <TextView
                     android:id="@+id/tvEditProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
+                    android:textSize="18dp"
                     android:text="Edit Profile"
                     android:layout_marginStart="12dp"
                     android:textStyle="bold"
@@ -176,19 +191,20 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="213dp"
+                    android:layout_marginTop="160dp"
                     android:src="@drawable/logout" />
 
                 <TextView
                     android:id="@+id/tvLogout"
                     android:layout_width="80dp"
                     android:layout_height="48dp"
+                    android:layout_marginTop="150dp"
                     android:text="Logout"
                     android:gravity="center"
-                    android:textColor="@android:color/red"
+                    android:background="@drawable/rounded_red_background"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginStart="8dp"
                     android:textSize="18dp"
                     android:clickable="true"
                     android:focusable="true" />
