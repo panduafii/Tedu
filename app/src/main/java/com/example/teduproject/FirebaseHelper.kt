@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
@@ -11,6 +12,14 @@ import java.util.*
 object FirebaseHelper {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
+
+    fun getCurrentUserId(): String? {
+        return FirebaseAuth.getInstance().currentUser?.uid
+    }
+
+    fun getDatabaseReference(path: String): DatabaseReference {
+        return FirebaseDatabase.getInstance().getReference(path)
+    }
 
     // Function to fetch total points directly from Firebase
     fun fetchTotalPoin(targetView: TextView, context: Context) {
