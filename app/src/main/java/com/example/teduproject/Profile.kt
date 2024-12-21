@@ -23,6 +23,16 @@ class Profile : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
+        // Ambil referensi TextView dari header_bar
+        val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
+
+        // Panggil fungsi untuk mengambil total poin
+        FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
+
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
         val tvLogout: TextView = findViewById(R.id.tvLogout)
 
         // Event handler for logout

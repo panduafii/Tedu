@@ -38,6 +38,10 @@ class Bercerita : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
         val txtSpeechBubble = findViewById<TextView>(R.id.speechBubble)
 
         // Ambil nama pengguna dari Firebase dan perbarui TextView

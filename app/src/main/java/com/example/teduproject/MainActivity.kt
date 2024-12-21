@@ -15,8 +15,14 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
+
+
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
+
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
 
     }
 }

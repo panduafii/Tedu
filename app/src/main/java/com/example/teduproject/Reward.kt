@@ -27,6 +27,10 @@ class Reward : AppCompatActivity() {
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
 
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
         val btnRedeem1 = findViewById<Button>(R.id.btnRedeem1)
         btnRedeem1.setOnClickListener {
             showRedeemDialog(100, "Voucher XXI")
