@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textViewStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Story text"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewDepression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Depression level"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewAnxiety"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anxiety level"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Summary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewStress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stress level"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewTimestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timestamp"
+        android:textSize="14sp" />
+
+</LinearLayout>

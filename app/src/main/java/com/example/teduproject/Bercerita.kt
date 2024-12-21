@@ -1,5 +1,6 @@
 package com.example.teduproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -46,6 +47,14 @@ class Bercerita : AppCompatActivity() {
                 txtSpeechBubble.text = greeting
             }
         }
+        // Initialize the button and set an onClickListener
+        val btnHistory = findViewById<Button>(R.id.btnHistory)
+        btnHistory.setOnClickListener {
+            // Start HistoryActivity
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         firebaseAuth = FirebaseAuth.getInstance()
