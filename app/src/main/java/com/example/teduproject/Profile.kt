@@ -33,6 +33,14 @@ class Profile : AppCompatActivity() {
         val streakBawah = findViewById<TextView>(R.id.Streakbawah)
         FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
 
+        // Ambil referensi TextView untuk nama pengguna
+        val userNameTextView = findViewById<TextView>(R.id.tvUsername)
+
+        // Ambil nama pengguna dari Firebase dan atur ke TextView
+        FirebaseHelper.fetchUserName { name ->
+            userNameTextView.text = name
+        }
+
         val tvLogout: TextView = findViewById(R.id.tvLogout)
 
         // Event handler for logout
