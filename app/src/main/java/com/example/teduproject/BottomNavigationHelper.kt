@@ -66,12 +66,17 @@ object BottomNavigationHelper {
         }
 
         // Menu Profile
-//        val menuProfile = navigationView.findViewById<LinearLayout>(R.id.menu_profile)
-//        menuProfile.setOnClickListener {
-//            if (context !is ProfileActivity) {
-//                val intent = Intent(context, ProfileActivity::class.java)
-//                context.startActivity(intent)
-//            }
-//        }
+        val menuProfile = navigationView.findViewById<LinearLayout>(R.id.menu_profile)
+        menuProfile.setOnClickListener {
+            if (context !is Profile) {
+                val intent = Intent(context,  Profile::class.java)
+                context.startActivity(intent)
+                // Ganti transisi animasi
+                (context as? AppCompatActivity)?.overridePendingTransition(
+                    android.R.anim.fade_in,
+                    android.R.anim.fade_out
+                )
+            }
+        }
     }
 }
