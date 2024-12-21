@@ -6,6 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <!-- Header Bar -->
@@ -37,6 +38,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="118dp"
             android:text="Selamat Datang,"
+            android:textColor="#353333"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,6 +128,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="User"
+            android:textColor="#353333"
             android:textSize="34sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
