@@ -20,11 +20,25 @@
 
     <!-- Bottom Navigation Menu -->
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="50dp"
+        android:text="Reward"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rewardsRecyclerView"
         android:layout_width="410dp"
         android:layout_height="707dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintBottom_toTopOf="@id/btnHistory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
