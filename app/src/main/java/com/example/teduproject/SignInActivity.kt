@@ -20,6 +20,11 @@ class SignInActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // Check if the user is already signed in
+        if (firebaseAuth.currentUser != null) {
+            navigateToMainActivity()
+        }
+
         binding.textView.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -56,5 +61,11 @@ class SignInActivity : AppCompatActivity() {
         }.addOnFailureListener {
             Toast.makeText(this, "Failed to fetch user name", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Call finish to remove this activity from the activity stack
     }
 }

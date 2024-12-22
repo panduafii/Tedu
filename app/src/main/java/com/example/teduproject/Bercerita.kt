@@ -1,5 +1,6 @@
 package com.example.teduproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -37,6 +38,10 @@ class Bercerita : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
         val txtSpeechBubble = findViewById<TextView>(R.id.speechBubble)
 
         // Ambil nama pengguna dari Firebase dan perbarui TextView
@@ -46,6 +51,14 @@ class Bercerita : AppCompatActivity() {
                 txtSpeechBubble.text = greeting
             }
         }
+        // Initialize the button and set an onClickListener
+        val btnHistory = findViewById<Button>(R.id.btnHistory)
+        btnHistory.setOnClickListener {
+            // Start HistoryActivity
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         firebaseAuth = FirebaseAuth.getInstance()

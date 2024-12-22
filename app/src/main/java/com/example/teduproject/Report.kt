@@ -39,6 +39,10 @@ class Report : AppCompatActivity() {
         // Panggil fungsi untuk mengambil total poin
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
 
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
         // Setup Line Chart
         setupLineChart()
     }

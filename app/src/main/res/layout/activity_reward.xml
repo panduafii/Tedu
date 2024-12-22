@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <!-- Include Header Bar -->
     <include
@@ -12,102 +14,41 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ScrollView untuk daftar reward -->
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/include"
-        app:layout_constraintBottom_toTopOf="@id/btnHistory">
+    <!-- RecyclerView for Reward Items -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+    <!-- Button for viewing redemption history -->
 
-            <!-- Card 1: Voucher XXI -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_background"
-                android:orientation="vertical"
-                android:padding="16dp">
+    <!-- Bottom Navigation Menu -->
 
-                <ImageView
-                    android:id="@+id/cardImage1"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_launcher_background" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rewardsRecyclerView"
+        android:layout_width="410dp"
+        android:layout_height="707dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintBottom_toTopOf="@id/btnHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_reward" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Voucher XXI - 100 Poin"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnRedeem1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="#3C84C7"
-                    android:text="Redeem"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-
-            <!-- Card 2: Gift Card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_background"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/cardImage2"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_launcher_background" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Gift Card - 200 Poin"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnRedeem2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="#3C84C7"
-                    android:text="Redeem"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- Button History -->
     <Button
         android:id="@+id/btnHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#3C84C7"
         android:text="Lihat History Redeem"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@id/navigationCard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.909" />
 
-    <!-- Bottom Navigation -->
     <include
         android:id="@+id/navigationCard"
         layout="@layout/bottom_navigation_menu"

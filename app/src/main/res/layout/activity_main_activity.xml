@@ -6,6 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <!-- Header Bar -->
@@ -21,62 +22,85 @@
     <!-- Frame Image -->
 
     <!-- Custom Content -->
+
+    <!-- Bottom Navigation -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="395dp"
-            android:layout_height="223dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="95dp"
-            android:layout_marginEnd="7dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/frame_60" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:gravity="center_vertical"
-            android:text="Halo !"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.201" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="65dp">
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="281dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="32dp"
-            android:gravity="center_vertical"
-            android:text="Satu langkah kecil untuk kebahagiaan besar"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="118dp"
+            android:text="Selamat Datang,"
+            android:textColor="#353333"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.254" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="408dp"
+            android:layout_height="224dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="395dp"
+                android:layout_height="223dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/frame_60" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="108dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="32dp"
+                android:gravity="center_vertical"
+                android:text="Diary"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.247" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="281dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="32dp"
+                android:gravity="center_vertical"
+                android:text="Satu langkah kecil untuk kebahagiaan besar"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.502" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="416dp"
             android:layout_height="199dp"
-            android:layout_marginTop="25dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -96,9 +120,20 @@
                 android:layout_height="199dp"
                 app:srcCompat="@drawable/menu_mainpage" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/User"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="User"
+            android:textColor="#353333"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Bottom Navigation -->
     <include
         android:id="@+id/navigationCard"
         layout="@layout/bottom_navigation_menu"
