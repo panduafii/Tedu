@@ -137,4 +137,49 @@ object FirebaseHelper {
             callback("User")  // Fallback if user is not logged in
         }
     }
+
+    fun fetchStoriesData(callback: (List<StoryData>) -> Unit) {
+        val userId = getCurrentUserId() ?: return
+
+        val storiesRef = getDatabaseReference("users/$userId/stories")
+        storiesRef.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                val result = mutableListOf<StoryData>()
+                for (child in snapshot.children) {
+                    val ceritaVal = child.child("cerita").getValue(String::class.java) ?: ""
+                    val poinVal = child.child("poin").getValue(String::class.java)?.toFloatOrNull() ?: 0f
+                    val kecemasanVal = child.child("kecemasan").getValue(String::class.java)?.toFloatOrNull() ?: 0f
+                    val depresiVal = child.child("depresi").getValue(String::class.java)?.toFloatOrNull() ?: 0f
+                    val stressVal = child.child("stress").getValue(String::class.java)?.toFloatOrNull() ?: 0f
+                    val timestampVal = child.child("timestamp").getValue(String::class.java)?.toLongOrNull() ?: 0L
+
+                    // Masukkan ke list
+                    result.add(
+                        StoryData(
+                            cerita = ceritaVal,
+                            poin = poinVal,
+                            kecemasan = kecemasanVal,
+                            depresi = depresiVal,
+                            stress = stressVal,
+                            timestamp = timestampVal
+                        )
+                    )
+                }
+                callback(result)
+            } else {
+                callback(emptyList())
+            }
+        }.addOnFailureListener {
+            callback(emptyList())
+        }
+    }
 }
+
+data class StoryData(
+    val cerita: String,
+    val poin: Float,
+    val kecemasan: Float,
+    val depresi: Float,
+    val stress: Float,
+    val timestamp: Long
+)
