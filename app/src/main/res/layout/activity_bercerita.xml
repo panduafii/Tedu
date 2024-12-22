@@ -114,7 +114,8 @@
                     android:gravity="start|top"
                     android:hint="Ketik sesuatu..."
                     android:inputType="textMultiLine"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/submitButton"
@@ -152,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Balasan"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -161,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Balasan akan muncul di sini"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
@@ -168,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Rangkuman"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -177,6 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Rangkuman akan muncul di sini"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
@@ -184,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Tingkat Kecemasan"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -193,6 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Tingkat kecemasan akan muncul di sini"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
@@ -200,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Tingkat Depresi"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -209,6 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Tingkat depresi akan muncul di sini"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
@@ -216,6 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Tingkat Stres"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -225,6 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Tingkat stres akan muncul di sini"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
@@ -232,6 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Poin"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -241,6 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Poin akan muncul di sini"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
             </LinearLayout>

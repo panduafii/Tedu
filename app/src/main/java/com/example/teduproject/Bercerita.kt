@@ -266,25 +266,71 @@ class Bercerita : AppCompatActivity() {
         }
     }
 
+    private fun getLastRangkumanFromFirebase(callback: (String) -> Unit) {
+        val userId = firebaseAuth.currentUser?.uid ?: return
+        val storiesRef = database.getReference("users")
+            .child(userId)
+            .child("stories")
+            .orderByChild("timestamp")
+            .limitToLast(1)
+
+        storiesRef.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                for (child in snapshot.children) {
+                    val lastRangkuman = child.child("rangkuman").getValue(String::class.java) ?: ""
+                    callback(lastRangkuman)
+                }
+            } else {
+                callback("")
+            }
+        }.addOnFailureListener {
+            callback("")
+        }
+    }
+
+    private fun getLastBalasanFromFirebase(callback: (String) -> Unit) {
+        val userId = firebaseAuth.currentUser?.uid ?: return
+        val storiesRef = database.getReference("users")
+            .child(userId)
+            .child("stories")
+            .orderByChild("timestamp")
+            .limitToLast(1)
+
+        storiesRef.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                for (child in snapshot.children) {
+                    val lastBalasan = child.child("hasilBalasan").getValue(String::class.java) ?: ""
+                    callback(lastBalasan)
+                }
+            } else {
+                callback("")
+            }
+        }.addOnFailureListener {
+            callback("")
+        }
+    }
+
 
     private fun getResponse(apiKey: String, url: String, roleContent: String, question: String, callback: (String) -> Unit) {
+        val safeRoleContent = JSONObject.quote(roleContent)
+        val safeQuestion = JSONObject.quote(question)
+
         val requestBody = """
         {
             "messages": [
                 {
                     "role": "system",
-                    "content": "$roleContent"
+                    "content": $safeRoleContent
                 },
                 {
                     "role": "user",
-                    "content": "$question"
+                    "content": $safeQuestion
                 }
             ],
             "model": "llama3-8b-8192",
             "temperature": 0.7,
             "max_tokens": 1800,
-            "top_p": 1,
-            "stream": true
+            "top_p": 1
         }
         """.trimIndent()
 
@@ -305,6 +351,8 @@ class Bercerita : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
+                Log.d("DEBUG_RESPONSE", "Raw body: $body")
+
                 if (body.isNullOrEmpty()) {
                     runOnUiThread {
                         callback("Empty response from server")
@@ -313,26 +361,33 @@ class Bercerita : AppCompatActivity() {
                 }
 
                 try {
-                    val lines = body.split("\n")
-                    val fullContent = StringBuilder()
+                    val jsonObject = JSONObject(body)
 
-                    for (line in lines) {
-                        if (line.startsWith("data: ")) {
-                            val jsonPart = line.removePrefix("data: ").trim()
-                            if (jsonPart == "[DONE]") continue
-
-                            val jsonObject = JSONObject(jsonPart)
-                            val choices = jsonObject.optJSONArray("choices") ?: continue
-                            for (i in 0 until choices.length()) {
-                                val delta = choices.getJSONObject(i).getJSONObject("delta")
-                                val content = delta.optString("content", "")
-                                fullContent.append(content)
-                            }
+                    // Cek apakah ada error
+                    val errorObj = jsonObject.optJSONObject("error")
+                    if (errorObj != null) {
+                        val errorMsg = errorObj.optString("message", "Unknown error from server")
+                        runOnUiThread {
+                            callback("Server Error: $errorMsg")
                         }
+                        return
                     }
 
-                    runOnUiThread {
-                        callback(fullContent.toString())
+                    // Baru parsing normal (OpenAI style)
+                    val choices = jsonObject.optJSONArray("choices")
+                    if (choices != null && choices.length() > 0) {
+                        val firstChoice = choices.getJSONObject(0)
+                        val msgObj = firstChoice.optJSONObject("message")
+                        val content = msgObj?.optString("content", "") ?: ""
+                        if (content.isNotEmpty()) {
+                            runOnUiThread { callback(content) }
+                        } else {
+                            runOnUiThread { callback("No content found in firstChoice") }
+                        }
+                    } else {
+                        runOnUiThread {
+                            callback("No recognized LLM content in response: $body")
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("JSON Parse Error", "Error parsing JSON", e)
@@ -345,17 +400,37 @@ class Bercerita : AppCompatActivity() {
     }
 
     private fun getBalasan(question: String, callback: (String) -> Unit) {
-        val apiKey = "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"
-        val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna."
-        getResponse(apiKey, url, roleContent, question, callback)
+        getLastRangkumanFromFirebase { lastRangkuman ->
+            val apiKey = "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"
+            val url = "https://api.groq.com/openai/v1/chat/completions"
+
+            val roleContent = """
+                Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna dalam bahasa Indonesia mengenai gangguan kecemasan, depresi, dan stress yang mungkin timbul dari cerita pengguna.
+                Berikut rangkuman (summary) sebelumnya sebagai konteks tambahan:
+                "$lastRangkuman"
+                
+                Tanggapi pertanyaan/cerita pengguna berikut dengan mempertimbangkan rangkuman di atas.
+            """.trimIndent()
+
+            getResponse(apiKey, url, roleContent, question, callback)
+        }
     }
 
     private fun getRangkuman(question: String, callback: (String) -> Unit) {
-        val apiKey = "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"
-        val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "Kamu adalah asisten yang merangkum input pengguna menjadi poin-poin penting."
-        getResponse(apiKey, url, roleContent, question, callback)
+        getLastBalasanFromFirebase { lastBalasan ->
+            val apiKey = "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"
+            val url = "https://api.groq.com/openai/v1/chat/completions"
+
+            val roleContent = """
+                Kamu adalah asisten yang merangkum input pengguna menjadi poin-poin pentingdalam bahasa Indonesia mengenai gangguan kecemasan, depresi, dan stress yang mungkin timbul dari cerita pengguna.
+                Berikut balasan (respon) sebelumnya sebagai konteks tambahan:
+                "$lastBalasan"
+                
+                Ringkas cerita pengguna baru ini dengan memperhatikan balasan sebelumnya.
+            """.trimIndent()
+
+            getResponse(apiKey, url, roleContent, question, callback)
+        }
     }
 
     private fun getKecemasan(question: String, callback: (String) -> Unit) {
