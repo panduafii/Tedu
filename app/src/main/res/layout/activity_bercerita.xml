@@ -39,13 +39,14 @@
         android:layout_height="56dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="112dp"
-        android:background="@drawable/rounded_blue_background"
+        android:background="@drawable/rounded_darkblue_backround"
         android:drawableStart="@drawable/icon_history"
         android:drawablePadding="10dp"
         android:gravity="center_vertical|start"
         android:paddingStart="16dp"
         android:text="History"
         android:textColor="#FFFFFF"
+        android:textColorLink="#C3C3C3"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -121,6 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/green"
+                    android:hapticFeedbackEnabled="true"
                     android:text="Kirim"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
@@ -131,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/green"
+                    android:hapticFeedbackEnabled="true"
                     android:text="Refresh"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
@@ -248,6 +251,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/green"
+                android:hapticFeedbackEnabled="true"
                 android:text="Simpan"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
