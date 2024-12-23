@@ -139,50 +139,59 @@ class Bercerita : AppCompatActivity() {
             txtStress.text = "Loading..."
             txtPoin.text = "Loading..."
 
-            // Panggil semua API
-            getBalasan(question) { response ->
-                if (response.isNotBlank() && response != "Empty response from server") {
-                    hasilBalasan = response
-                    runOnUiThread { txtBalasan.text = response }
+            // Ambil nama pengguna dari Firebase
+            FirebaseHelper.fetchUserName { userName ->
+                if (userName.isBlank()) {
+                    Toast.makeText(this, "Nama pengguna tidak ditemukan.", Toast.LENGTH_SHORT).show()
+                    return@fetchUserName
                 }
-            }
-            getRangkuman(question) { response ->
-                if (response.isNotBlank() && response != "Empty response from server") {
-                    hasilRangkuman = response
-                    runOnUiThread { txtRangkuman.text = response }
-                }
-            }
-            getKecemasan(question) { response ->
-                if (response.isNotBlank() && response != "Empty response from server") {
-                    hasilKecemasan = response
-                    runOnUiThread { txtKecemasan.text = response }
-                }
-            }
-            getDepresi(question) { response ->
-                if (response.isNotBlank() && response != "Empty response from server") {
-                    hasilDepresi = response
-                    runOnUiThread { txtDepresi.text = response }
-                }
-            }
-            getStress(question) { response ->
-                if (response.isNotBlank() && response != "Empty response from server") {
-                    hasilStress = response
-                    runOnUiThread { txtStress.text = response }
-                }
-            }
-            getPoin(question) { response ->
-                if (response.isNotBlank() && response != "Empty response from server") {
-                    hasilPoin = response
-                    runOnUiThread { txtPoin.text = response }
-                }
-            }
 
-            checkResponses() // Mulai pengecekan hingga semua respons diterima
+                // Panggil semua API
+                getBalasan(question, userName) { response ->
+                    if (response.isNotBlank() && response != "Empty response from server") {
+                        hasilBalasan = response
+                        runOnUiThread { txtBalasan.text = response }
+                    }
+                }
+                getRangkuman(question) { response ->
+                    if (response.isNotBlank() && response != "Empty response from server") {
+                        hasilRangkuman = response
+                        runOnUiThread { txtRangkuman.text = response }
+                    }
+                }
+                getKecemasan(question) { response ->
+                    if (response.isNotBlank() && response != "Empty response from server") {
+                        hasilKecemasan = response
+                        runOnUiThread { txtKecemasan.text = response }
+                    }
+                }
+                getDepresi(question) { response ->
+                    if (response.isNotBlank() && response != "Empty response from server") {
+                        hasilDepresi = response
+                        runOnUiThread { txtDepresi.text = response }
+                    }
+                }
+                getStress(question) { response ->
+                    if (response.isNotBlank() && response != "Empty response from server") {
+                        hasilStress = response
+                        runOnUiThread { txtStress.text = response }
+                    }
+                }
+                getPoin(question) { response ->
+                    if (response.isNotBlank() && response != "Empty response from server") {
+                        hasilPoin = response
+                        runOnUiThread { txtPoin.text = response }
+                    }
+                }
+
+                checkResponses() // Mulai pengecekan hingga semua respons diterima
+            }
 
             btnSubmit.visibility = View.GONE
             btnRefresh.visibility = View.VISIBLE
             btnSave.visibility = View.GONE // Sembunyikan save hingga semua data diterima
         }
+
 
         btnSave.setOnClickListener {
             val cerita = etQuestion.text.toString()
@@ -399,17 +408,18 @@ class Bercerita : AppCompatActivity() {
         })
     }
 
-    private fun getBalasan(question: String, callback: (String) -> Unit) {
+    private fun getBalasan(question: String, userName: String, callback: (String) -> Unit) {
         getLastRangkumanFromFirebase { lastRangkuman ->
             val apiKey = "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"
             val url = "https://api.groq.com/openai/v1/chat/completions"
 
             val roleContent = """
-                Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna dalam bahasa Indonesia mengenai gangguan kecemasan, depresi, dan stress yang mungkin timbul dari cerita pengguna.
-                Berikut rangkuman (summary) sebelumnya sebagai konteks tambahan:
-                "$lastRangkuman"
+            Halo, $userName! Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna dalam bahasa Indonesia mengenai gangguan kecemasan, depresi, dan stres yang mungkin timbul dari cerita pengguna.
+            Berikut rangkuman (summary) sebelumnya sebagai konteks tambahan:
+            "$lastRangkuman"
                 
-                Tanggapi pertanyaan/cerita pengguna berikut dengan mempertimbangkan rangkuman di atas.
+                Dengan mempertimbangkan rangkuman tersebut, berikan jawaban yang tidak hanya informatif tetapi juga menunjukkan empati dan dukungan. Jawablah dalam bahasa Indonesia yang baik dan benar, dan usahakan untuk memberikan saran praktis atau langkah-langkah yang bisa diambil oleh pengguna untuk mengurangi perasaannya saat ini.
+            Gunakan nada yang menenangkan dan pastikan untuk validasi perasaan pengguna tanpa mengesampingkan perasaan tersebut. Jika situasinya memerlukan, arahkan pengguna untuk mencari bantuan profesional. jangan lupa untuk selalu menjawab menggunakan bahasa indonesia.
             """.trimIndent()
 
             getResponse(apiKey, url, roleContent, question, callback)
@@ -417,14 +427,14 @@ class Bercerita : AppCompatActivity() {
     }
 
     private fun getRangkuman(question: String, callback: (String) -> Unit) {
-        getLastBalasanFromFirebase { lastBalasan ->
+        getLastRangkumanFromFirebase { lastRangkuman ->
             val apiKey = "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"
             val url = "https://api.groq.com/openai/v1/chat/completions"
 
             val roleContent = """
                 Kamu adalah asisten yang merangkum input pengguna menjadi poin-poin pentingdalam bahasa Indonesia mengenai gangguan kecemasan, depresi, dan stress yang mungkin timbul dari cerita pengguna.
                 Berikut balasan (respon) sebelumnya sebagai konteks tambahan:
-                "$lastBalasan"
+                "$lastRangkuman"
                 
                 Ringkas cerita pengguna baru ini dengan memperhatikan balasan sebelumnya.
             """.trimIndent()
@@ -436,28 +446,72 @@ class Bercerita : AppCompatActivity() {
     private fun getKecemasan(question: String, callback: (String) -> Unit) {
         val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "saya ingin kamu menilai tingkat kecemasan dari cerita user, saya ingin kamu menjawab dalam '1-100', tidak ada kata kata lain, hanya angka saja, contoh, '1','2','3', ... ,'100' "
+        val roleContent = "Berdasarkan cerita yang disampaikan, berikan skor kecemasan dari 1 sampai 100. Gunakan panduan berikut untuk penilaian:\n" +
+                "        1-10 untuk situasi tanpa kekhawatiran atau stres,\n" +
+                "        11-20 untuk sedikit kekhawatiran terhadap situasi spesifik,\n" +
+                "        21-30 untuk kekhawatiran yang masih terkelola,\n" +
+                "        31-40 untuk kecemasan yang lebih rutin,\n" +
+                "        41-50 untuk kecemasan yang mempengaruhi kegiatan sehari-hari,\n" +
+                "        51-60 untuk kecemasan intens dan sering,\n" +
+                "        61-70 untuk kecemasan yang mengganggu fungsi harian,\n" +
+                "        71-80 untuk kecemasan yang melumpuhkan,\n" +
+                "        81-90 untuk kekhawatiran yang hampir konstan dan ketakutan signifikan,\n" +
+                "        91-100 untuk serangan panik atau keadaan kecemasan mendalam dan berkelanjutan.\n" +
+                "        Jawab dengan angka saja, tanpa kata tambahan. contoh, '1','2','3', ... ,'100' "
         getResponse(apiKey, url, roleContent, question, callback)
     }
 
     private fun getDepresi(question: String, callback: (String) -> Unit) {
         val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "saya ingin kamu menilai tingkat depresi dari cerita user, saya ingin kamu menjawab dalam '1-100', tidak ada kata kata lain, hanya angka saja, contoh, '1','2','3', ... ,'100' "
+        val roleContent = "Berdasarkan cerita yang disampaikan, berikan skor depresi dari 1 sampai 100. Gunakan panduan berikut untuk penilaian:\n" +
+                "        1-10 untuk suasana hati yang sangat stabil dan positif,\n" +
+                "        11-20 untuk sedikit rasa sedih atau down yang jarang terjadi,\n" +
+                "        21-30 untuk perasaan down yang terkadang terjadi tanpa pengaruh besar pada kehidupan,\n" +
+                "        31-40 untuk suasana hati yang sering down tapi masih bisa berfungsi,\n" +
+                "        41-50 untuk perasaan sedih yang rutin dan mulai berdampak pada aktivitas harian,\n" +
+                "        51-60 untuk suasana hati yang sering murung dan mengganggu kegiatan sehari-hari,\n" +
+                "        61-70 untuk depresi yang signifikan, sering merasa tidak berdaya dan kehilangan minat,\n" +
+                "        71-80 untuk depresi yang sangat berat dengan kehilangan minat hampir pada semua aktivitas,\n" +
+                "        81-90 untuk perasaan terus-menerus putus asa, kehilangan minat yang parah, dan gangguan fungsi sosial,\n" +
+                "        91-100 untuk depresi ekstrem dengan pemikiran sering tentang kematian atau bunuh diri.\n" +
+                "        Jawab dengan angka saja, tanpa kata tambahan. contoh, '1','2','3', ... ,'100' "
         getResponse(apiKey, url, roleContent, question, callback)
     }
 
     private fun getStress(question: String, callback: (String) -> Unit) {
         val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "saya ingin kamu menilai tingkat stress dari cerita user, saya ingin kamu menjawab dalam '1-100', tidak ada kata kata lain, hanya angka saja, contoh, '1','2','3', ... ,'100' "
+        val roleContent = "Berdasarkan cerita yang disampaikan, berikan skor tingkat stres dari 1 sampai 100. Gunakan panduan berikut untuk penilaian:\n" +
+                "        1-10 untuk hampir tidak ada stres, merasa sangat tenang dan terkendali,\n" +
+                "        11-20 untuk stres sangat ringan, masalah kecil yang mudah diatasi,\n" +
+                "        21-30 untuk stres ringan, masalah sehari-hari yang terkadang mengganggu tapi masih terkelola,\n" +
+                "        31-40 untuk stres sedang, masalah yang sering mengganggu namun masih bisa diatasi,\n" +
+                "        41-50 untuk stres cukup tinggi, masalah yang mulai berdampak pada kesehatan dan kebahagiaan,\n" +
+                "        51-60 untuk stres tinggi, sering merasa kewalahan dan kesulitan mengatasi masalah,\n" +
+                "        61-70 untuk stres sangat tinggi, merasa kewalahan hampir sepanjang waktu dan sering jatuh sakit,\n" +
+                "        71-80 untuk stres ekstrem, kesulitan besar dalam menghadapi hari-hari, sering sakit,\n" +
+                "        81-90 untuk stres yang hampir konstan dengan gangguan serius pada kesehatan, pekerjaan, dan hubungan,\n" +
+                "        91-100 untuk stres maksimal, hampir tidak mampu berfungsi dalam kehidupan sehari-hari dan mungkin memerlukan bantuan profesional.\n" +
+                "        Jawab dengan angka saja, tanpa kata tambahan. contoh, '1','2','3', ... ,'100' "
         getResponse(apiKey, url, roleContent, question, callback)
     }
 
     private fun getPoin(question: String, callback: (String) -> Unit) {
         val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
-        val roleContent = "Hitung poin atau skor berdasarkan masukan pengguna dan konteks yang diberikan.saya ingin kamu menjawab dalam '1-100', tidak ada kata kata lain, hanya angka saja, contoh, '1','2','3', ... ,'100' "
+        val roleContent = "Berdasarkan detail dari cerita yang disampaikan pengguna, berikan skor dari 1 sampai 100. Pertimbangkan faktor-faktor berikut dalam penilaian detail:\n" +
+                "        1-10 untuk cerita yang sangat umum atau minim detail,\n" +
+                "        11-20 untuk cerita dengan sedikit detail spesifik,\n" +
+                "        21-30 untuk cerita yang memiliki beberapa detail spesifik,\n" +
+                "        31-40 untuk cerita dengan detail yang cukup untuk memahami konteks umum,\n" +
+                "        41-50 untuk cerita dengan detail yang baik dan deskripsi beberapa elemen,\n" +
+                "        51-60 untuk cerita yang cukup rinci dalam menggambarkan peristiwa atau perasaan,\n" +
+                "        61-70 untuk cerita yang detail dalam penggambaran dan emosi,\n" +
+                "        71-80 untuk cerita sangat rinci dengan banyak nuansa dan pengamatan kritis,\n" +
+                "        81-90 untuk cerita yang sangat detail dan mendalam, memberikan gambaran lengkap dengan banyak insight,\n" +
+                "        91-100 untuk cerita yang sangat detail, dengan kekayaan deskripsi dan analisis yang kompleks.\n" +
+                "        Jawab hanya dengan angka, tanpa kata tambahan. contoh, '1','2','3', ... ,'100' "
         getResponse(apiKey, url, roleContent, question, callback)
     }
 }

@@ -5,19 +5,23 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class Profile : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // Initialize Firebase Auth
+        // Initialize Firebase Auth and Database Reference
         firebaseAuth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().reference
 
         // Setup navigation and other UI elements (assuming setupBottomNavigation is a valid method)
         val navigationView = findViewById<View>(R.id.navigationCard)
@@ -42,6 +46,8 @@ class Profile : AppCompatActivity() {
         }
 
         val tvLogout: TextView = findViewById(R.id.tvLogout)
+        val tvEditProfile: TextView = findViewById(R.id.tvEditProfile)
+        val tvHapusBercerita: TextView = findViewById(R.id.tvHapusBercerita)
 
         // Event handler for logout
         tvLogout.setOnClickListener {
@@ -58,11 +64,48 @@ class Profile : AppCompatActivity() {
         }
 
         // Setup for other UI elements like edit profile
-        val tvEditProfile: TextView = findViewById(R.id.tvEditProfile)
         tvEditProfile.setOnClickListener {
             // Handle edit profile click
             Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show()
             // Navigate to Edit Profile Activity if necessary
+        }
+
+        // Setup for delete stories
+        tvHapusBercerita.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Konfirmasi Hapus")
+        builder.setMessage("Apakah Anda yakin ingin menghapus semua stories Anda?")
+        builder.setPositiveButton("Ya") { _, _ ->
+            hapusStory()
+        }
+        builder.setNegativeButton("Batal", null)
+        builder.show()
+    }
+
+    private fun hapusStory() {
+        // UID pengguna saat ini
+        val currentUserId = firebaseAuth.currentUser?.uid
+
+        // Cek jika UID ada
+        if (currentUserId != null) {
+            // Referensi ke lokasi stories pengguna
+            val userStoriesRef = databaseReference.child("users/$currentUserId/stories")
+
+            // Hapus semua stories
+            userStoriesRef.removeValue().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Semua stories telah dihapus", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Gagal menghapus stories", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Pengguna tidak dikenali, tidak bisa menghapus stories", Toast.LENGTH_SHORT).show()
         }
     }
 }

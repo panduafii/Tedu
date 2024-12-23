@@ -28,8 +28,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
-            android:layout_width="412dp"
-            android:layout_height="625dp"
+            android:layout_width="407dp"
+            android:layout_height="650dp"
+            android:layout_marginLeft="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -40,12 +41,12 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewHistory"
-                    android:layout_width="397dp"
+                    android:layout_width="375dp"
                     android:layout_height="687dp"
                     android:layout_margin="8dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="120dp"
-                    android:layout_marginEnd="1dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="151dp"
                     android:clipToPadding="true" />
             </LinearLayout>
