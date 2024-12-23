@@ -55,31 +55,30 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
+                    <!-- Spinner -->
                     <Spinner
                         android:id="@+id/spinnerChartType"
-                        android:layout_width="150dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="162dp"
+                        android:layout_width="135dp"
+                        android:layout_height="49dp"
                         android:background="@drawable/rounded_yellow"
-                        android:dropDownWidth="wrap_content"
                         android:gravity="center_horizontal"
                         android:paddingHorizontal="8dp"
                         android:popupBackground="@drawable/rounded_yellow"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <!-- Dropdown Icon -->
                     <ImageView
                         android:id="@+id/imageView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="272dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Dropdown icon"
+                        app:layout_constraintBottom_toBottomOf="@id/spinnerChartType"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/spinnerChartType"
                         app:srcCompat="@drawable/baseline_arrow_drop_down_24" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -180,7 +179,7 @@
                             android:gravity="center"
                             android:text="Stres"
                             android:textColor="@android:color/white"
-                            android:textSize="14sp"
+                            android:textSize="10sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -217,7 +216,7 @@
                             android:gravity="center"
                             android:text="Depresi"
                             android:textColor="@android:color/white"
-                            android:textSize="14sp"
+                            android:textSize="10sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -244,6 +243,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -254,7 +254,7 @@
                             android:gravity="center"
                             android:text="Kecemasan"
                             android:textColor="@android:color/white"
-                            android:textSize="14sp"
+                            android:textSize="10sp"
                             android:textStyle="bold" />
 
                         <TextView
