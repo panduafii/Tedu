@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#F4F4F5"
     tools:context=".Bercerita">
 
     <!-- Header Bar -->
@@ -14,53 +13,41 @@
         layout="@layout/header_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Scrollable Content -->
-
-<!--    <Button-->
-<!--        android:id="@+id/btnHistory"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="2dp"-->
-<!--        android:background="#DCDCDC"-->
-<!--        android:backgroundTint="#27759B"-->
-<!--        android:text="Button"-->
-<!--        android:textColorLink="#BA3636"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/scrollView"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-    <!-- TextView dengan background rounded -->
-
-    <Button
-        android:id="@+id/btnHistory"
-        android:layout_width="366dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="112dp"
-        android:background="@drawable/rounded_darkblue_backround"
-        android:drawableStart="@drawable/icon_history"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical|start"
-        android:paddingStart="16dp"
-        android:text="History"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#C3C3C3"
-        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHistory"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/blue_bg"
+        android:gravity="start|center_vertical"
+        android:paddingStart="30dp"
+        android:text="History"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:cornerRadius="15dp"
+        app:icon="@drawable/history"
+        app:iconGravity="end"
+        app:iconSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include" />
 
+    <!-- ScrollView -->
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="418dp"
-        android:layout_height="663dp"
-        android:layout_marginTop="85dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@id/navigationCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include">
+        app:layout_constraintTop_toBottomOf="@id/btnHistory">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,10 +56,9 @@
             android:padding="16dp">
 
             <!-- Character Section -->
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
@@ -94,9 +80,8 @@
                     android:background="@drawable/speech_bubble"
                     android:padding="12dp"
                     android:text="Halo, kamu ingin bercerita apa hari ini?"
-                    android:textColor="@android:color/white"
+                    android:textColor="#1B415E"
                     android:textSize="16sp" />
-
             </LinearLayout>
 
             <!-- Input Section -->
@@ -119,25 +104,34 @@
 
                 <Button
                     android:id="@+id/submitButton"
-                    android:layout_width="352dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:backgroundTint="@color/green"
                     android:hapticFeedbackEnabled="true"
                     android:text="Kirim"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
                     android:id="@+id/tombolRefresh"
-                    android:layout_width="352dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:backgroundTint="@color/green"
                     android:hapticFeedbackEnabled="true"
                     android:text="Refresh"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -148,6 +142,7 @@
                 android:padding="16dp"
                 android:visibility="gone">
 
+                <!-- Balasan Section -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -255,19 +250,24 @@
                     android:text="Poin akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
             </LinearLayout>
 
             <Button
                 android:id="@+id/tombolSimpan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/green"
                 android:hapticFeedbackEnabled="true"
                 android:text="Simpan"
                 android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/navigationCard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resultContainer" />
         </LinearLayout>
     </ScrollView>
 
@@ -276,7 +276,6 @@
         android:id="@+id/navigationCard"
         layout="@layout/bottom_navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

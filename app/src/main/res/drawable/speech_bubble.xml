@@ -2,7 +2,7 @@
     <!-- Bubble Background -->
     <item>
         <shape>
-            <solid android:color="@android:color/holo_blue_dark" />
+            <solid android:color="#FFFFFF" /> <!-- Warna dalam diubah menjadi putih -->
             <corners android:radius="8dp" />
             <padding
                 android:left="16dp"
@@ -11,7 +11,7 @@
                 android:bottom="12dp" />
             <stroke
                 android:width="2dp"
-                android:color="@android:color/darker_gray" />
+                android:color="#143E64FF" /> <!-- Warna border diubah menjadi biru dongker -->
         </shape>
     </item>
 
@@ -19,10 +19,10 @@
     <item
         android:gravity="bottom|left">
         <shape>
-            <solid android:color="@android:color/holo_blue_dark" />
+            <solid android:color="#FFFFFF" /> <!-- Warna tail diubah menjadi putih -->
             <path
                 android:pathData="M0,0 L16,16 L16,0 Z"
-                android:fillColor="@android:color/holo_blue_dark" />
+                android:fillColor="#143E64FF" /> <!-- Warna tail diubah menjadi biru dongker -->
         </shape>
     </item>
 </layer-list>
