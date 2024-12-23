@@ -46,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type your Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Email Field -->
@@ -69,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type your Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password Field -->
@@ -93,7 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type your Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Confirm Password Field -->
@@ -117,7 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Retype your Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Sign Up Button -->

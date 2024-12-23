@@ -76,6 +76,73 @@
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="90dp"
                 app:srcCompat="@drawable/fafa_happy" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="184dp">
+
+                <TextView
+                    android:id="@+id/tvInstruction"
+                    android:layout_width="133dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="60dp"
+                    android:gravity="center"
+                    android:text="Kalibrasi Dulu!"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnCalibrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="47dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="#226496"
+                    android:text="Kalibrasi"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInstruction" />
+
+                <TextView
+                    android:id="@+id/tvCountdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="Waktu: 10 detik"
+                    android:textColor="#512DA8"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProgress" />
+
+                <TextView
+                    android:id="@+id/tvProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="0 dB"
+                    android:textColor="#512DA8"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="#226395"
+                    android:text="Mulai"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCountdown" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
         <ProgressBar
@@ -94,91 +161,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="42dp"
-            android:backgroundTint="#226395"
-            android:text="Mulai"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCountdown" />
-
-        <TextView
-            android:id="@+id/tvProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="255dp"
-            android:layout_marginEnd="68dp"
-            android:text="0 dB"
-            android:textColor="#512DA8"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-        <TextView
-            android:id="@+id/tvCountdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="25dp"
-            android:text="Waktu: 10 detik"
-            android:textColor="#512DA8"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProgress" />
-
-        <Button
-            android:id="@+id/btnCalibrate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#226496"
-            android:text="Kalibrasi"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInstruction" />
-
-        <TextView
-            android:id="@+id/tvInstruction"
-            android:layout_width="141dp"
-            android:layout_height="107dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginTop="220dp"
-            android:gravity="center"
-            android:text="Tekan tombol kalibrasi dibawah sebelum menekan tombol mulai!"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="16dp">
-
-            <!-- Progress Bar -->
-
-            <!-- Display Current dB Level -->
-
-            <!-- Countdown Display -->
-
-            <!-- Start Button -->
-
-            <!-- Calibration Instruction -->
-
-            <!-- Calibration Button -->
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="350dp"
-        app:boxStrokeColor="@color/yellow"
-        app:hintTextColor="@color/yellow"
+        app:boxStrokeColor="@color/blue_bg"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type your Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,13 +55,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
-        app:boxStrokeColor="@color/yellow"
-        app:hintTextColor="@color/yellow"
+        app:boxStrokeColor="@color/blue_bg"
+        app:hintTextColor="@color/black"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLayout"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintTop_toBottomOf="@id/emailLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passET"
@@ -68,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/type_your_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton

@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-12-23T10:21:32.554654Z">
+        <DropdownSelection timestamp="2024-12-23T15:18:37.547754600Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/panduafii/.android/avd/Tedu_Project.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=095392534E001277" />
             </handle>
           </Target>
         </DropdownSelection>
