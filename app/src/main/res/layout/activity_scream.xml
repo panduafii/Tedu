@@ -22,12 +22,19 @@
             android:layout_marginTop="-30dp"
             app:srcCompat="@drawable/background_scream1" />
 
-        <ImageView
-            android:id="@+id/backgroundBawah"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="390dp"
-            android:layout_marginTop="350dp"
-            app:srcCompat="@drawable/background_scream2" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/backgroundBawah"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:layout_marginTop="400dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/background_scream2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
@@ -43,6 +50,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+            android:layout_width="358dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginEnd="70dp"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/customprogressbar"
+            android:rotation="270"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,88 +103,83 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="184dp">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tvInstruction"
-                    android:layout_width="133dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="60dp"
-                    android:gravity="center"
-                    android:text="Kalibrasi Dulu!"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="172dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <Button
-                    android:id="@+id/btnCalibrate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="47dp"
-                    android:layout_marginTop="4dp"
-                    android:backgroundTint="#226496"
-                    android:text="Kalibrasi"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInstruction" />
+                    <Button
+                        android:id="@+id/btnCalibrate"
+                        android:layout_width="112dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginBottom="50dp"
+                        android:backgroundTint="#226496"
+                        android:text="Kalibrasi"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvCountdown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="Waktu: 10 detik"
-                    android:textColor="#512DA8"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvProgress" />
+                    <TextView
+                        android:id="@+id/tvInstruction"
+                        android:layout_width="133dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="46dp"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center"
+                        android:text="Kalibrasi Dulu!"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/btnCalibrate"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvProgress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="0 dB"
-                    android:textColor="#512DA8"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tvCountdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Waktu: 10 detik"
+                        android:textColor="#512DA8"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-                <Button
-                    android:id="@+id/btnStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="#226395"
-                    android:text="Mulai"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCountdown" />
+                    <TextView
+                        android:id="@+id/tvProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="0 dB"
+                        android:textColor="#512DA8"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toTopOf="@+id/tvCountdown"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btnStart"
+                        android:layout_width="93dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="50dp"
+                        android:backgroundTint="#226395"
+                        android:text="Mulai"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-            android:layout_width="358dp"
-            android:layout_height="63dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginEnd="70dp"
-            android:indeterminateOnly="false"
-            android:max="100"
-            android:progress="0"
-            android:progressDrawable="@drawable/customprogressbar"
-            android:rotation="270"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -168,7 +187,8 @@
         android:id="@+id/navigationCard"
         layout="@layout/bottom_navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
