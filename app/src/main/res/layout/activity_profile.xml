@@ -260,7 +260,6 @@
                         android:id="@+id/tvLogout"
                         android:layout_width="129dp"
                         android:layout_height="52dp"
-                        android:layout_marginStart="248dp"
                         android:background="@drawable/rounded_red_background"
                         android:clickable="true"
                         android:focusable="true"
@@ -269,7 +268,7 @@
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

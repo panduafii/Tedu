@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Reward Name - X Poin"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageReward" />
@@ -35,6 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Redeem"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textRewardName" />
 

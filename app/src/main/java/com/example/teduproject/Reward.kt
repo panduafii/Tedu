@@ -45,10 +45,10 @@ class Reward : AppCompatActivity() {
 
         // Dummy rewards data
         val rewardsList = listOf(
-            RewardItem("Voucher XXI", 100, R.drawable.ic_fire.toString()),
-            RewardItem("Voucher Belanja", 200, R.drawable.ic_fire.toString()),
-            RewardItem("Voucher Es Krim", 50, R.drawable.ic_fire.toString()),
-            RewardItem("Voucher Air Es", 10, R.drawable.ic_fire.toString()),
+            RewardItem("Voucher Konsultasi Psikolog RS JIH", 200, R.drawable.jih.toString()),
+            RewardItem("Voucher Discount XXI", 100, R.drawable.cinemaxxi.toString()),
+            RewardItem("Voucher Hiburan Premium Joox", 50, R.drawable.joox.toString()),
+            RewardItem("Voucher Discount Indomaret", 10, R.drawable.indomaret.toString()),
         )
 
 

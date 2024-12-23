@@ -40,6 +40,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="16dp"
                 android:text="Reward"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
