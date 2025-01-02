@@ -63,8 +63,8 @@
                     <!-- Spinner -->
                     <Spinner
                         android:id="@+id/spinnerChartType"
-                        android:layout_width="135dp"
-                        android:layout_height="49dp"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
                         android:background="@drawable/rounded_yellow"
                         android:gravity="center_horizontal"
                         android:paddingHorizontal="8dp"
@@ -132,7 +132,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:backgroundTint="#226496"
+                    android:backgroundTint="#1167fe"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#226395"
+                    app:cardBackgroundColor="#f49300"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#226395"
+                    app:cardBackgroundColor="#f50162"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#226395"
+                    app:cardBackgroundColor="#3ed6db"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 

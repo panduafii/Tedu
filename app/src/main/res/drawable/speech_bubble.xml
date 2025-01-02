@@ -1,28 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Bubble Background -->
+
+    <!-- Bubble Body -->
     <item>
-        <shape>
-            <solid android:color="#FFFFFF" /> <!-- Warna dalam diubah menjadi putih -->
-            <corners android:radius="8dp" />
-            <padding
-                android:left="16dp"
-                android:top="12dp"
-                android:right="16dp"
-                android:bottom="12dp" />
-            <stroke
-                android:width="2dp"
-                android:color="#143E64FF" /> <!-- Warna border diubah menjadi biru dongker -->
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFF" />
+            <corners android:radius="16dp" />
         </shape>
     </item>
 
-    <!-- Bubble Tail -->
-    <item
-        android:gravity="bottom|left">
-        <shape>
-            <solid android:color="#FFFFFF" /> <!-- Warna tail diubah menjadi putih -->
-            <path
-                android:pathData="M0,0 L16,16 L16,0 Z"
-                android:fillColor="#143E64FF" /> <!-- Warna tail diubah menjadi biru dongker -->
+    <!-- Rounded Tail -->
+    <item android:top="16dp" android:start="24dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFF" />
+            <size
+                android:width="16dp"
+                android:height="16dp" />
         </shape>
     </item>
 </layer-list>

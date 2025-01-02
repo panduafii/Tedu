@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F5"
+    android:background="#F5F5F5"
     tools:context=".Bercerita">
 
-    <!-- Header Bar -->
     <include
         android:id="@+id/include"
         layout="@layout/header_bar"
@@ -24,21 +23,26 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="25dp"
-        android:backgroundTint="@color/blue_bg"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/helvetica"
         android:gravity="start|center_vertical"
         android:paddingStart="30dp"
         android:text="History"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/biru1"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:cornerRadius="15dp"
         app:icon="@drawable/history"
         app:iconGravity="end"
         app:iconSize="25dp"
+        app:strokeColor="@color/biru"
+        app:strokeWidth="1dp"
+        app:iconTint="@color/biru"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        app:layout_constraintTop_toBottomOf="@id/include"
+         />
 
-    <!-- ScrollView -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -53,15 +57,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="7dp">
 
-            <!-- Character Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="2dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -69,22 +72,48 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="16dp"
                     android:src="@drawable/mascot_putih" />
 
-                <TextView
-                    android:id="@+id/speechBubble"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/speech_bubble"
-                    android:padding="12dp"
-                    android:text="Halo, kamu ingin bercerita apa hari ini?"
-                    android:textColor="#1B415E"
-                    android:textSize="16sp" />
+                    android:padding="16dp">
+
+                    <!-- Bubble Chat -->
+                    <TextView
+                        android:id="@+id/speechBubble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@drawable/speech_bubble"
+                        android:fontFamily="@font/helvetica"
+                        android:padding="16dp"
+                        android:text="Halo, kamu ingin bercerita apa hari ini?"
+                        android:textColor="#1B415E"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Polygon (Arrow) -->
+                    <ImageView
+                        android:id="@+id/polygon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="-8dp"
+                        android:layout_marginTop="-50dp"
+                        android:translationY="-8dp"
+                        app:layout_constraintStart_toStartOf="@id/speechBubble"
+                        app:layout_constraintTop_toBottomOf="@id/speechBubble"
+                        app:srcCompat="@drawable/polygon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
-            <!-- Input Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,11 +125,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:background="@drawable/rounded_edit_text"
+                    android:fontFamily="@font/helvetica"
                     android:gravity="start|top"
                     android:hint="Ketik sesuatu..."
                     android:inputType="textMultiLine"
                     android:padding="12dp"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="1dp" />
 
                 <Button
                     android:id="@+id/submitButton"
@@ -109,13 +141,16 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@color/biru"
+                    android:fontFamily="@font/helvetica"
                     android:hapticFeedbackEnabled="true"
                     android:text="Kirim"
                     android:textColor="@android:color/white"
+                    app:icon="@drawable/send"
+                    app:iconGravity="end"
+                    app:iconTint="@android:color/white"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/tombolRefresh"
@@ -124,14 +159,18 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="#d0e4ff"
+                    android:fontFamily="@font/helvetica"
                     android:hapticFeedbackEnabled="true"
                     android:text="Refresh"
-                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textColor="@color/biru"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
+                    app:icon="@drawable/refresh"
+                    app:iconGravity="end"
+                    app:iconTint="@color/biru"
+                    app:strokeColor="@color/biru"
+                    app:strokeWidth="1dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -142,11 +181,11 @@
                 android:padding="16dp"
                 android:visibility="gone">
 
-                <!-- Balasan Section -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Balasan"
                     android:textColor="#000000"
                     android:textSize="18sp"
@@ -157,96 +196,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Balasan akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Rangkuman"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtRangkuman"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Rangkuman akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Tingkat Kecemasan"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtKecemasan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Tingkat kecemasan akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Tingkat Depresi"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtDepresi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Tingkat depresi akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Tingkat Stres"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtStress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Tingkat stres akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Poin"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtPoin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/helvetica"
                     android:text="Poin akan muncul di sini"
                     android:textColor="#000000"
                     android:textSize="16sp" />
@@ -259,23 +259,23 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/green"
+                android:backgroundTint="@color/biru"
+                android:fontFamily="@font/helvetica"
                 android:hapticFeedbackEnabled="true"
                 android:text="Simpan"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@id/navigationCard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/resultContainer" />
+                android:textStyle="bold"
+                app:icon="@drawable/save"
+                app:iconGravity="end" />
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
     <include
         android:id="@+id/navigationCard"
         layout="@layout/bottom_navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
