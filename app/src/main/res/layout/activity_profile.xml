@@ -18,7 +18,7 @@
             android:layout_height="400dp"
             android:layout_marginTop="-50dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/background_profile1" />
+            app:srcCompat="@drawable/background_profile2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="Profile"
-            android:textColor="#0E3857"
+            android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold" />
     </FrameLayout>
@@ -107,7 +107,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="0"
-                    android:textColor="@color/primary"
+                    android:textColor="@color/biru"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -137,7 +137,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="0"
-                    android:textColor="@color/primary"
+                    android:textColor="@color/biru"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -166,7 +166,7 @@
                     android:backgroundTint="@color/border"
                     android:max="100"
                     android:progress="50"
-                    android:progressTint="@color/primary" />
+                    android:progressTint="@color/biru" />
             </LinearLayout>
 
             <!-- Menu Items -->
@@ -181,7 +181,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:background="@drawable/rounded_yellow"                    android:gravity="center_vertical"
+                    android:background="@drawable/rounded_yellow"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="12dp">
 

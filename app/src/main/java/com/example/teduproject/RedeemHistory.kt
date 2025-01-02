@@ -1,14 +1,17 @@
 package com.example.teduproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RedeemHistory : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -39,18 +42,28 @@ class RedeemHistory : AppCompatActivity() {
         // Ambil data history redeem dari Firebase
         val redeemedRef = database.getReference("users").child(userId).child("redeemedRewards")
         redeemedRef.get().addOnSuccessListener { snapshot ->
-            val historyList = mutableListOf<String>()
+            val historyList = mutableListOf<RedeemHistoryItem>()
+            val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
 
             for (child in snapshot.children) {
                 val reward = child.child("reward").getValue(String::class.java) ?: "Unknown"
                 val cost = child.child("cost").getValue(Int::class.java) ?: 0
                 val timestamp = child.child("timestamp").getValue(Long::class.java) ?: 0L
+                val formattedDate = dateFormat.format(Date(timestamp))
 
-                historyList.add("Hadiah: $reward | Poin: $cost")
+                historyList.add(RedeemHistoryItem(reward, cost, formattedDate))
+            }
+            // Tambahkan logika untuk tombol Back
+            val backButton = findViewById<ImageView>(R.id.backButton)
+            backButton.setOnClickListener {
+                // Navigasi kembali ke halaman Bercerita
+                val intent = Intent(this, Reward::class.java)
+                startActivity(intent)
+                finish() // Tutup aktivitas saat ini
             }
 
-            // Tampilkan data ke ListView
-            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, historyList)
+            // Tampilkan data ke ListView dengan adapter
+            val adapter = RedeemHistoryAdapter(this, historyList)
             listView.adapter = adapter
         }.addOnFailureListener {
             Toast.makeText(this, "Gagal mengambil data history.", Toast.LENGTH_SHORT).show()

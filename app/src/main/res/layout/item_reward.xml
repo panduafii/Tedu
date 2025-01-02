@@ -37,7 +37,7 @@
         android:layout_marginTop="8dp"
         android:text="Redeem"
         android:textColor="@color/white"
-        android:backgroundTint="@color/blue_bg"
+        android:backgroundTint="@color/biru1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textRewardName" />
 

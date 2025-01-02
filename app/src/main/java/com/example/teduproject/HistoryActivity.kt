@@ -1,7 +1,9 @@
-
 package com.example.teduproject
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +42,15 @@ class HistoryActivity : AppCompatActivity() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users/$userId/stories")
         fetchHistoryData()
+
+        // Tambahkan logika untuk tombol Back
+        val backButton = findViewById<ImageView>(R.id.backButton)
+        backButton.setOnClickListener {
+            // Navigasi kembali ke halaman Bercerita
+            val intent = Intent(this, Bercerita::class.java)
+            startActivity(intent)
+            finish() // Tutup aktivitas saat ini
+        }
     }
 
     private fun fetchHistoryData() {
@@ -58,7 +69,6 @@ class HistoryActivity : AppCompatActivity() {
             }
         })
     }
-
 }
 
 data class HistoryItem(

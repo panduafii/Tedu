@@ -7,6 +7,9 @@
     <color name="green">#4CAF50</color>
     <color name="red">#FA4032</color>
     <color name="blue_bg">#27759B</color>
+    <color name="neon_green">#BCEB3C</color>
+    <color name="biru">#0F67FE</color>
+    <color name="biru1">#1167fe</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
