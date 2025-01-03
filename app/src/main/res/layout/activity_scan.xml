@@ -44,21 +44,32 @@
                 android:rotation="90"
                 android:scaleType="centerCrop" />
 
+            <!-- Scan Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/scanButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/biru"
                 android:drawablePadding="8dp"
                 android:text="Scan Image"
                 android:textColor="@android:color/white"
                 app:icon="@drawable/scan"
                 app:iconGravity="textEnd"
-                app:iconTint="@android:color/white" />
+                app:iconTint="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@id/imageDisplay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/spinnerUsers" />
 
-            <!-- ProgressBar -->
+            <Spinner
+                android:id="@+id/spinnerUsers"
+                android:layout_width="153dp"
+                android:layout_height="38dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/scanButton"
+                app:layout_constraintTop_toBottomOf="@id/imageDisplay"/>
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
