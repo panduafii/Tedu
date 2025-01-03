@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import io.noties.markwon.Markwon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -108,7 +109,9 @@ class Scan : AppCompatActivity() {
                 // Kirim ke OpenAI
                 val response = sendImageToOpenAi(encodedImage)
                 runOnUiThread {
-                    textResultDisplay.text = response
+                    // Gunakan Markwon untuk merender Markdown
+                    val markwon = Markwon.create(this@Scan)
+                    markwon.setMarkdown(textResultDisplay, response)
                     onComplete()
                 }
             } catch (e: Exception) {
@@ -119,6 +122,7 @@ class Scan : AppCompatActivity() {
             }
         }
     }
+
 
     private fun encodeImageToBase64(image: Bitmap): String {
         val outputStream = ByteArrayOutputStream()

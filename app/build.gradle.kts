@@ -71,4 +71,7 @@ dependencies {
     implementation (libs.okhttp)
 
     implementation("com.aallam.openai:openai-client:3.8.2")
+
+    implementation ("io.noties.markwon:core:4.6.2")
+
 }
