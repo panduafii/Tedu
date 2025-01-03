@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Izin yang diperlukan -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="29" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="29" />
 
     <application
         android:allowBackup="true"
@@ -20,76 +20,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeduProject"
         tools:targetApi="31">
-        <activity
-            android:name=".RedeemHistoryAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".Scream"
-            android:exported="true">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- FileProvider untuk mendukung pengambilan gambar -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
-            android:name=".HistoryActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Profile"
-            android:exported="true" />
-        <activity
-            android:name=".RedeemHistory"
-            android:exported="true" />
-        <activity
-            android:name=".Output"
-            android:exported="true" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignInActivity"
-            android:exported="true">
+        <!-- Aktivitas dalam aplikasi -->
+        <activity android:name=".Scan" android:exported="true" />
+        <activity android:name=".Scream" android:exported="true" />
+        <activity android:name=".HistoryActivity" android:exported="true" />
+        <activity android:name=".Profile" android:exported="true" />
+        <activity android:name=".RedeemHistory" android:exported="true" />
+        <activity android:name=".Output" android:exported="true" />
+        <activity android:name=".SignUpActivity" android:exported="true" />
+        <activity android:name=".SignInActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity
-            android:name=".Challenge"
-            android:exported="true" />
-        <activity
-            android:name=".Kuisioner"
-            android:exported="true" />
+        <activity android:name=".Challenge" android:exported="true" />
+        <activity android:name=".Kuisioner" android:exported="true" />
         <activity android:name=".Reward" />
         <activity android:name=".Kesehatan"
             android:exported="true" />
         <activity android:name=".Report" />
-        <activity
-            android:name=".Bercerita"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+        <activity android:name=".Bercerita" android:exported="true" />
     </application>
 
 </manifest>

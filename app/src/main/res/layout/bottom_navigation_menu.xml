@@ -81,7 +81,7 @@
                         android:layout_gravity="center"
                         android:background="#FFFFFF"
                         android:foregroundGravity="center"
-                        android:src="@drawable/ic_home"
+                        android:src="@drawable/scan"
                         app:tint="@color/biru" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
