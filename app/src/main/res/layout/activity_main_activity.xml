@@ -73,14 +73,16 @@
         android:layout_marginTop="102dp"
         android:fillViewport="true"
         android:paddingTop="10dp"
-        app:layout_constraintBottom_toTopOf="@id/navigationCard"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="80dp">
 
             <!-- Card Ungu -->
             <com.google.android.material.card.MaterialCardView
@@ -89,13 +91,13 @@
                 android:layout_height="416dp"
                 android:layout_margin="16dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="@color/biru"
-                app:strokeWidth="2dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintWidth_percent="0.45">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.45"
+                app:strokeColor="@color/biru"
+                app:strokeWidth="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -114,8 +116,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Telling Story With Steve"
                         android:fontFamily="@font/helvetica"
+                        android:text="Telling Story With Steve"
                         android:textAlignment="center"
                         android:textColor="@color/biru"
                         android:textSize="16sp"
@@ -133,14 +135,14 @@
                 android:layout_margin="16dp"
                 android:layout_marginEnd="9dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="#f50162"
-                app:strokeWidth="2dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/c_ungu"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.45">
+                app:layout_constraintWidth_percent="0.45"
+                app:strokeColor="#f50162"
+                app:strokeWidth="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -176,13 +178,13 @@
                 android:layout_margin="16dp"
                 android:layout_marginEnd="9dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="#9300F5"
-                app:strokeWidth="2dp"
                 app:cardCornerRadius="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/c_ungu"
                 app:layout_constraintTop_toBottomOf="@id/c_pink"
-                app:layout_constraintWidth_percent="0.45">
+                app:layout_constraintWidth_percent="0.45"
+                app:strokeColor="#9300F5"
+                app:strokeWidth="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -217,13 +219,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="#3ED6DB"
-                app:strokeWidth="2dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/c_ungu">
+                app:layout_constraintTop_toBottomOf="@id/c_ungu"
+                app:strokeColor="#3ED6DB"
+                app:strokeWidth="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -242,8 +244,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Research The Composition With Bluey"
                         android:fontFamily="@font/helvetica"
+                        android:text="Research The Composition With Bluey"
                         android:textAlignment="center"
                         android:textColor="#3ED6DB"
                         android:textSize="16sp"
@@ -260,14 +262,14 @@
                 android:layout_margin="16dp"
                 android:layout_marginBottom="30dp"
                 app:cardBackgroundColor="@color/white"
-                app:strokeColor="#F49300"
-                app:strokeWidth="2dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/c_biru">
+                app:layout_constraintTop_toBottomOf="@id/c_biru"
+                app:strokeColor="#F49300"
+                app:strokeWidth="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -286,15 +288,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Scream Your Emotion With Digo"
                         android:fontFamily="@font/helvetica"
+                        android:text="Scream Your Emotion With Digo"
                         android:textAlignment="center"
                         android:textColor="#F49300"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

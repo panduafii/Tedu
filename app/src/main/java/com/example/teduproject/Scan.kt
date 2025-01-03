@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import io.noties.markwon.Markwon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,6 +74,15 @@ class Scan : AppCompatActivity() {
                 dispatchTakePictureIntent()
             }
         }
+        // Periksa apakah intent memiliki flag untuk langsung membuka kamera
+        val openCamera = intent.getBooleanExtra("OPEN_CAMERA", false)
+        if (openCamera) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
+            } else {
+                dispatchTakePictureIntent()
+            }
+        }
     }
 
     private fun dispatchTakePictureIntent() {
@@ -112,7 +122,9 @@ class Scan : AppCompatActivity() {
                 // Kirim ke OpenAI
                 val response = sendImageToOpenAi(encodedImage)
                 runOnUiThread {
-                    textResultDisplay.text = response
+                    // Gunakan Markwon untuk merender Markdown
+                    val markwon = Markwon.create(this@Scan)
+                    markwon.setMarkdown(textResultDisplay, response)
                     onComplete()
                 }
             } catch (e: Exception) {
@@ -123,6 +135,7 @@ class Scan : AppCompatActivity() {
             }
         }
     }
+
 
     private fun encodeImageToBase64(image: Bitmap): String {
         val outputStream = ByteArrayOutputStream()
@@ -140,7 +153,7 @@ class Scan : AppCompatActivity() {
               "content": [
                 {
                   "type": "text",
-                  "text": "Kamu adalah seorang analis gizi..."
+                  "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan tuliskan kembali informasi nutrisi tersebut secara terperinci dan detail, pastikan bahwa nilai yang kamu tulis sesuai dengan yang ada di gambar. lalu pastikan juga kamu menulis dalam baha indonesia. tulisan dengan rapi"
                 }
               ]
             },

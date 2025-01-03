@@ -48,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@id/navigationCard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnHistory">
@@ -57,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="7dp">
+            android:padding="7dp"
+            android:paddingBottom="80dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,6 +134,7 @@
                     android:textColor="#000000"
                     app:strokeColor="@color/black"
                     app:strokeWidth="1dp" />
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="48dp"
@@ -140,9 +142,9 @@
                     android:layout_gravity="center"
                     android:indeterminateTint="@color/biru"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/inputField"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/inputField" />
 
                 <Button
                     android:id="@+id/submitButton"
@@ -156,11 +158,11 @@
                     android:hapticFeedbackEnabled="true"
                     android:text="Kirim"
                     android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:icon="@drawable/send"
                     app:iconGravity="end"
-                    app:iconTint="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    app:iconTint="@android:color/white" />
 
                 <Button
                     android:id="@+id/tombolRefresh"
@@ -173,9 +175,9 @@
                     android:fontFamily="@font/helvetica"
                     android:hapticFeedbackEnabled="true"
                     android:text="Refresh"
-                    android:textStyle="bold"
                     android:textColor="@color/biru"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:icon="@drawable/refresh"
                     app:iconGravity="end"
                     app:iconTint="@color/biru"
@@ -269,6 +271,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="80dp"
                 android:backgroundTint="@color/biru"
                 android:fontFamily="@font/helvetica"
                 android:hapticFeedbackEnabled="true"
@@ -277,8 +280,8 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:icon="@drawable/save"
-                app:iconTint="@color/white"
-                app:iconGravity="end" />
+                app:iconGravity="end"
+                app:iconTint="@color/white" />
         </LinearLayout>
     </ScrollView>
 
