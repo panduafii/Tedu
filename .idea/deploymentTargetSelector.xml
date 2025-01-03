@@ -3,7 +3,7 @@
   <component name="deploymentTargetSelector">
     <selectionStates>
       <SelectionState runConfigName="app">
-        <option name="selectionMode" value="DROPDOWN" />h
+        <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2025-01-02T08:11:37.472313900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
