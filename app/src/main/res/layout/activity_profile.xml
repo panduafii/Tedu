@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Header Bar -->
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,8 +58,6 @@
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
-
-        <!-- Text Overlay -->
     </FrameLayout>
 
     <ScrollView
@@ -77,10 +73,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!-- Header Section -->
-
-            <!-- Mental Health Status -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -176,11 +168,45 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Edit Profile -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/rounded_yellow"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="39dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:src="@drawable/ic_heartpulse" />
+
+                    <TextView
+                        android:id="@+id/InformasiKesehatan"
+                        android:layout_width="240dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="Informasi Kesehatan"
+                        android:textColor="@color/primary_text"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/fafa_happy" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/rounded_yellow"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -214,8 +240,6 @@
                 </LinearLayout>
 
                 <!-- Spacer (Pushing Logout Button to the Bottom) -->
-
-                <!-- Logout Button -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"

@@ -55,6 +55,8 @@
         <activity android:name=".Challenge" android:exported="true" />
         <activity android:name=".Kuisioner" android:exported="true" />
         <activity android:name=".Reward" />
+        <activity android:name=".Kesehatan"
+            android:exported="true" />
         <activity android:name=".Report" />
         <activity android:name=".Bercerita" android:exported="true" />
     </application>

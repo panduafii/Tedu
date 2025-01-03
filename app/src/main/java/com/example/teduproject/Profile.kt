@@ -19,20 +19,18 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // Initialize Firebase Auth and check for the current user
         firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser
 
         if (currentUser == null) {
             Toast.makeText(this, "No authenticated user found", Toast.LENGTH_SHORT).show()
-            finish() // Finish activity if no user is logged in
+            finish()
             return
         }
 
         // Initialize Database Reference
         databaseReference = FirebaseDatabase.getInstance().getReference("users/${currentUser.uid}")
 
-        // Setup navigation and other UI elements
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
@@ -51,8 +49,13 @@ class Profile : AppCompatActivity() {
         val tvLogout: TextView = findViewById(R.id.tvLogout)
         val tvEditProfile: TextView = findViewById(R.id.tvEditProfile)
         val tvHapusBercerita: TextView = findViewById(R.id.tvHapusBercerita)
+        val informasiKesehatan: TextView = findViewById(R.id.InformasiKesehatan)
 
-        // Event handler for logout
+        informasiKesehatan.setOnClickListener {
+            val intent = Intent(this, Kesehatan::class.java)
+            startActivity(intent)
+        }
+
         tvLogout.setOnClickListener {
             firebaseAuth.signOut()
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
@@ -61,12 +64,10 @@ class Profile : AppCompatActivity() {
             finish()
         }
 
-        // Event handler for edit profile
         tvEditProfile.setOnClickListener {
             Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show()
         }
 
-        // Event handler for deleting stories
         tvHapusBercerita.setOnClickListener {
             showDeleteConfirmationDialog()
         }

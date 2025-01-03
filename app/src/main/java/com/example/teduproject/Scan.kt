@@ -8,9 +8,12 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -31,6 +34,7 @@ class Scan : AppCompatActivity() {
     private lateinit var scanButton: Button
     private lateinit var imageDisplay: ImageView
     private lateinit var textResultDisplay: TextView
+    private lateinit var progressBar: ProgressBar
     private lateinit var photoFile: File
 
     companion object {
@@ -47,6 +51,7 @@ class Scan : AppCompatActivity() {
         scanButton = findViewById(R.id.scanButton)
         imageDisplay = findViewById(R.id.imageDisplay)
         textResultDisplay = findViewById(R.id.textResultDisplay)
+        progressBar = findViewById(R.id.progressBar)
 
         scanButton.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -60,7 +65,6 @@ class Scan : AppCompatActivity() {
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
-                // Buat file untuk menyimpan gambar resolusi penuh
                 photoFile = File.createTempFile("photo", ".jpg", cacheDir)
                 val photoURI = FileProvider.getUriForFile(this, "${packageName}.fileprovider", photoFile)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -72,33 +76,36 @@ class Scan : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = BitmapFactory.decodeFile(photoFile.absolutePath) // Gambar resolusi penuh
+            val imageBitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
             imageBitmap?.let {
                 imageDisplay.setImageBitmap(it)
-                performImageAnalysis(it)
+
+                // Tampilkan ProgressBar
+                progressBar.visibility = View.VISIBLE
+
+                // Lakukan analisis gambar
+                performImageAnalysis(it) {
+                    progressBar.visibility = View.GONE // Sembunyikan ProgressBar setelah selesai
+                }
             }
         }
     }
 
-    private fun performImageAnalysis(image: Bitmap) {
+    private fun performImageAnalysis(image: Bitmap, onComplete: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                // Tampilkan gambar asli di ImageView
-                runOnUiThread {
-                    imageDisplay.setImageBitmap(image) // Tampilkan gambar asli
-                }
-
-                // Encode gambar asli
                 val encodedImage = encodeImageToBase64(image)
 
                 // Kirim ke OpenAI
                 val response = sendImageToOpenAi(encodedImage)
                 runOnUiThread {
-                    textResultDisplay.text = response // Tampilkan hasil analisis
+                    textResultDisplay.text = response
+                    onComplete()
                 }
             } catch (e: Exception) {
                 runOnUiThread {
                     textResultDisplay.text = "Error: ${e.localizedMessage}"
+                    onComplete()
                 }
             }
         }
@@ -106,7 +113,7 @@ class Scan : AppCompatActivity() {
 
     private fun encodeImageToBase64(image: Bitmap): String {
         val outputStream = ByteArrayOutputStream()
-        image.compress(Bitmap.CompressFormat.JPEG, 45, outputStream) // Gunakan PNG tanpa kompresi
+        image.compress(Bitmap.CompressFormat.JPEG, 45, outputStream)
         return Base64.encodeToString(outputStream.toByteArray(), Base64.NO_WRAP)
     }
 
@@ -120,7 +127,7 @@ class Scan : AppCompatActivity() {
               "content": [
                 {
                   "type": "text",
-                  "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan tuliskan kembali informasi nutrisi tersebut secara terperinci dan detail, pastikan bahwa nilai yang kamu tulis sesuai dengan yang ada di gambar. Sertakan pula informasi tentang adanya alergen atau bahan-bahan yang mungkin sensitif bagi beberapa orang."
+                  "text": "Kamu adalah seorang analis gizi..."
                 }
               ]
             },
@@ -170,12 +177,11 @@ class Scan : AppCompatActivity() {
                 return "Error: ${response.message}"
             }
 
-            // Parsing JSON untuk mendapatkan konten hasil
             val jsonResponse = JSONObject(responseBody)
             val choicesArray = jsonResponse.getJSONArray("choices")
             val firstChoice = choicesArray.getJSONObject(0)
             val messageObject = firstChoice.getJSONObject("message")
-            return messageObject.getString("content") // Ambil hanya konten jawaban
+            return messageObject.getString("content")
         }
     }
 }

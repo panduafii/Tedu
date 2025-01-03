@@ -25,12 +25,31 @@
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop" />
 
-            <Button
+            <!-- Button with Icon -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/scanButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scan Image" />
+                android:layout_gravity="center_horizontal"
+                android:text="Scan Image"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/biru"
+                android:drawablePadding="8dp"
+                app:icon="@drawable/scan"
+                app:iconTint="@android:color/white"
+                app:iconGravity="textEnd" />
 
+            <!-- ProgressBar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:indeterminateTint="@color/biru"
+                android:visibility="gone" />
+
+            <!-- TextView for Results -->
             <TextView
                 android:id="@+id/textResultDisplay"
                 android:layout_width="match_parent"
