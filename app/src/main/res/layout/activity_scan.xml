@@ -5,12 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
+
+    <!-- Include Header Bar -->
+
+    <include
+        android:id="@+id/headerBar"
+        layout="@layout/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="85dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,26 +34,29 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+
+            <!-- Button with Icon -->
             <ImageView
                 android:id="@+id/imageDisplay"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="400dp"
+                android:layout_marginTop="20dp"
+                android:rotation="90"
                 android:scaleType="centerCrop" />
 
-            <!-- Button with Icon -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/scanButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Scan Image"
-                android:textColor="@android:color/white"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/biru"
                 android:drawablePadding="8dp"
+                android:text="Scan Image"
+                android:textColor="@android:color/white"
                 app:icon="@drawable/scan"
-                app:iconTint="@android:color/white"
-                app:iconGravity="textEnd" />
+                app:iconGravity="textEnd"
+                app:iconTint="@android:color/white" />
 
             <!-- ProgressBar -->
             <ProgressBar
@@ -54,10 +73,20 @@
                 android:id="@+id/textResultDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_corners"
+                android:padding="15dp"
                 android:text="Results will be displayed here"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
     </ScrollView>
+    <!-- Bottom Navigation Menu -->
+    <include
+        android:id="@+id/navigationCard"
+        layout="@layout/bottom_navigation_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
         // Set onClickListeners for the cards
         val cardUngu = findViewById<ImageView>(R.id.i_ungu)
         val cardKuning = findViewById<ImageView>(R.id.i_kuning)
