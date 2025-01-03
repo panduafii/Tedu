@@ -48,6 +48,19 @@ class Scan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
 
+        // Bottom Navigation setup
+        val navigationView = findViewById<View>(R.id.navigationCard)
+        BottomNavigationHelper.setupBottomNavigation(this, navigationView)
+
+        // Fetch and display streak data
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
+        // Fetch and display total points
+        val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
+        FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
+
         scanButton = findViewById(R.id.scanButton)
         imageDisplay = findViewById(R.id.imageDisplay)
         textResultDisplay = findViewById(R.id.textResultDisplay)
