@@ -16,32 +16,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHistory"
+    <!-- Layout untuk Back dan History Buttons -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginStart="25dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="25dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/helvetica"
-        android:gravity="start|center_vertical"
-        android:paddingStart="30dp"
-        android:text="History"
-        android:textColor="@color/biru1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/history"
-        app:iconGravity="end"
-        app:iconSize="25dp"
-        app:strokeColor="@color/biru"
-        app:strokeWidth="1dp"
-        app:iconTint="@color/biru"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include"
-         />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/back"
+            android:contentDescription="Back Button"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:scaleType="centerInside" />
+
+        <!-- History Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistory"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/helvetica"
+            android:gravity="start|center_vertical"
+            android:paddingStart="30dp"
+            android:text="History"
+            android:textColor="@color/biru1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/history"
+            app:iconGravity="end"
+            app:iconSize="25dp"
+            app:strokeColor="@color/biru"
+            app:strokeWidth="1dp"
+            app:iconTint="@color/biru" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -51,7 +73,7 @@
         app:layout_constraintBottom_toTopOf="@id/navigationCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnHistory">
+        app:layout_constraintTop_toBottomOf="@id/buttonContainer">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,6 +155,7 @@
                     android:textColor="#000000"
                     app:strokeColor="@color/black"
                     app:strokeWidth="1dp" />
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="48dp"
@@ -140,9 +163,9 @@
                     android:layout_gravity="center"
                     android:indeterminateTint="@color/biru"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/inputField"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/inputField" />
 
                 <Button
                     android:id="@+id/submitButton"
@@ -156,11 +179,11 @@
                     android:hapticFeedbackEnabled="true"
                     android:text="Kirim"
                     android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:icon="@drawable/send"
                     app:iconGravity="end"
-                    app:iconTint="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    app:iconTint="@android:color/white" />
 
                 <Button
                     android:id="@+id/tombolRefresh"
@@ -173,9 +196,9 @@
                     android:fontFamily="@font/helvetica"
                     android:hapticFeedbackEnabled="true"
                     android:text="Refresh"
-                    android:textStyle="bold"
                     android:textColor="@color/biru"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:icon="@drawable/refresh"
                     app:iconGravity="end"
                     app:iconTint="@color/biru"
@@ -277,8 +300,8 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:icon="@drawable/save"
-                app:iconTint="@color/white"
-                app:iconGravity="end" />
+                app:iconGravity="end"
+                app:iconTint="@color/white" />
         </LinearLayout>
     </ScrollView>
 

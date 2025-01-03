@@ -33,6 +33,13 @@ class Report : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
+        // Inisialisasi tombol back
+        val backButton = findViewById<ImageView>(R.id.backButton)
+        backButton.setOnClickListener {
+            // Tutup aktivitas saat tombol back ditekan
+            finish()
+        }
+
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
 
