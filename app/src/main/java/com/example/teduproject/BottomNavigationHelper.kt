@@ -38,9 +38,9 @@ object BottomNavigationHelper {
         }
 
         // Menu Home
-        val menuHome = navigationView.findViewById<View>(R.id.menu_home)
-        menuHome.setOnClickListener {
-            if (context !is MainActivity) {
+        val menuScan = navigationView.findViewById<View>(R.id.menu_scan)
+        menuScan.setOnClickListener {
+            if (context !is Scan) {
                 val intent = Intent(context, Scan::class.java)
                 context.startActivity(intent)
                 // Ganti transisi animasi

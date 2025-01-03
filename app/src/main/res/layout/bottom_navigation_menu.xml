@@ -58,7 +58,7 @@
 
             <!-- Menu Item 3 (Home with shadow) -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/menu_home"
+                android:id="@+id/menu_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
