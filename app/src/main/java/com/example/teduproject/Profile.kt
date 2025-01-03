@@ -32,7 +32,7 @@ class Profile : AppCompatActivity() {
         // Initialize Database Reference
         databaseReference = FirebaseDatabase.getInstance().getReference("users/${currentUser.uid}")
 
-        val backButton = findViewById<ImageView>(R.id.backButton)
+        val backButton = findViewById<ImageView>(R.id.logo)
         backButton.setOnClickListener {
             finish() // Menutup aktivitas dan kembali ke layar sebelumnya
         }

@@ -34,7 +34,7 @@ class Report : AppCompatActivity() {
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
         // Inisialisasi tombol back
-        val backButton = findViewById<ImageView>(R.id.backButton)
+        val backButton = findViewById<ImageView>(R.id.logo)
         backButton.setOnClickListener {
             // Tutup aktivitas saat tombol back ditekan
             finish()

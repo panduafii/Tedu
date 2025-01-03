@@ -32,7 +32,7 @@ class Bercerita : AppCompatActivity() {
         setContentView(R.layout.activity_bercerita)
 
         // Tombol Back
-        val backButton = findViewById<ImageView>(R.id.backButton)
+        val backButton = findViewById<ImageView>(R.id.logo)
         backButton.setOnClickListener {
             // Aksi untuk kembali ke aktivitas sebelumnya
             finish() // Mengakhiri aktivitas saat ini dan kembali ke aktivitas sebelumnya

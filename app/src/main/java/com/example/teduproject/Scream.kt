@@ -55,7 +55,7 @@ class Scream : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scream)
 
-        val backButton = findViewById<ImageView>(R.id.backButton)
+        val backButton = findViewById<ImageView>(R.id.logo)
         backButton.setOnClickListener {
             finish() // Kembali ke aktivitas sebelumnya
         }

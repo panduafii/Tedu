@@ -25,7 +25,7 @@ class Reward : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reward)
 
-        val backButton = findViewById<ImageView>(R.id.backButton)
+        val backButton = findViewById<ImageView>(R.id.logo)
         backButton.setOnClickListener {
             finish() // Menutup aktivitas dan kembali ke layar sebelumnya
         }

@@ -53,6 +53,11 @@ class Scan : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
+        val backButton = findViewById<ImageView>(R.id.logo)
+        backButton.setOnClickListener {
+            finish() // Kembali ke aktivitas sebelumnya
+        }
+
         // Fetch and display streak data
         val streakAtas = findViewById<TextView>(R.id.StreakAtas)
         val streakBawah = findViewById<TextView>(R.id.Streakbawah)
