@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +29,7 @@ class Bercerita : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bercerita)
+
 
         // Ambil referensi TextView dari header_bar
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
@@ -51,6 +53,9 @@ class Bercerita : AppCompatActivity() {
                 txtSpeechBubble.text = greeting
             }
         }
+        // ProgressBar untuk menampilkan loading
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
         // Initialize the button and set an onClickListener
         val btnHistory = findViewById<Button>(R.id.btnHistory)
         btnHistory.setOnClickListener {
@@ -99,6 +104,7 @@ class Bercerita : AppCompatActivity() {
                 ).all { it.isNotBlank() }
 
                 if (allResponsesReady) {
+                    progressBar.visibility = View.GONE // ProgressBar disembunyikan
                     btnSubmit.visibility = View.GONE
                     btnSave.visibility = View.VISIBLE
                     btnRefresh.visibility = View.VISIBLE
@@ -122,7 +128,7 @@ class Bercerita : AppCompatActivity() {
                 Toast.makeText(this, "Input tidak boleh kosong!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
+            progressBar.visibility = View.VISIBLE // Tampilkan ProgressBar
             Toast.makeText(this, "Mengirim pertanyaan, harap tunggu...", Toast.LENGTH_SHORT).show()
 
             hasilBalasan = ""
@@ -143,6 +149,7 @@ class Bercerita : AppCompatActivity() {
             FirebaseHelper.fetchUserName { userName ->
                 if (userName.isBlank()) {
                     Toast.makeText(this, "Nama pengguna tidak ditemukan.", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE // Sembunyikan ProgressBar jika gagal
                     return@fetchUserName
                 }
 
@@ -194,11 +201,13 @@ class Bercerita : AppCompatActivity() {
 
 
         btnSave.setOnClickListener {
+            progressBar.visibility = View.VISIBLE // Tampilkan ProgressBar saat save
             val cerita = etQuestion.text.toString()
 
             // Validasi apakah semua hasil sudah terisi
             if (cerita.isBlank()) {
                 Toast.makeText(this, "Input cerita tidak boleh kosong.", Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE // Sembunyikan jika gagal
                 return@setOnClickListener
             }
             if (hasilBalasan.isBlank() || hasilRangkuman.isBlank() || hasilKecemasan.isBlank() ||
@@ -217,6 +226,7 @@ class Bercerita : AppCompatActivity() {
                 hasilStress,
                 hasilPoin
             )
+            progressBar.visibility = View.GONE // Sembunyikan setelah selesai
         }
 
         btnRefresh.setOnClickListener {

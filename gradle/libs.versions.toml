@@ -13,6 +13,10 @@ googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 firebaseDatabaseKtx = "21.0.0"
 firebaseAuthKtx = "23.1.0"
+okhttp = "4.11.0"
+openai = "1.0.0"
+opencvAndroid = "4.5.5"
+retrofit = "2.9.0"
 
 
 [libraries]
@@ -28,7 +32,11 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebaseDatabaseKtx" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
-
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+openai = { module = "com.openai:openai", version.ref = "openai" }
+opencv-android = { module = "org.opencv:opencv-android", version.ref = "opencvAndroid" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
