@@ -37,11 +37,12 @@ object BottomNavigationHelper {
             }
         }
 
-        // Menu Home
+        // Menu Scan
         val menuScan = navigationView.findViewById<View>(R.id.menu_scan)
         menuScan.setOnClickListener {
             if (context !is Scan) {
                 val intent = Intent(context, Scan::class.java)
+                intent.putExtra("OPEN_CAMERA", true) // Tambahkan flag untuk membuka kamera langsung
                 context.startActivity(intent)
                 // Ganti transisi animasi
                 (context as? AppCompatActivity)?.overridePendingTransition(
@@ -50,6 +51,7 @@ object BottomNavigationHelper {
                 )
             }
         }
+
 
         // Menu Statistics
         val menuReport = navigationView.findViewById<LinearLayout>(R.id.menu_report)

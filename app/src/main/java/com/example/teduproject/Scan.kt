@@ -60,6 +60,15 @@ class Scan : AppCompatActivity() {
                 dispatchTakePictureIntent()
             }
         }
+        // Periksa apakah intent memiliki flag untuk langsung membuka kamera
+        val openCamera = intent.getBooleanExtra("OPEN_CAMERA", false)
+        if (openCamera) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
+            } else {
+                dispatchTakePictureIntent()
+            }
+        }
     }
 
     private fun dispatchTakePictureIntent() {
@@ -127,7 +136,7 @@ class Scan : AppCompatActivity() {
               "content": [
                 {
                   "type": "text",
-                  "text": "Kamu adalah seorang analis gizi..."
+                  "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan tuliskan kembali informasi nutrisi tersebut secara terperinci dan detail, pastikan bahwa nilai yang kamu tulis sesuai dengan yang ada di gambar. lalu pastikan juga kamu menulis dalam baha indonesia. tulisan dengan rapi"
                 }
               ]
             },
