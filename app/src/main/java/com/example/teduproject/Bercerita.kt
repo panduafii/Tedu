@@ -410,7 +410,7 @@ class Bercerita : AppCompatActivity() {
 
     private fun getBalasan(question: String, userName: String, callback: (String) -> Unit) {
         getLastRangkumanFromFirebase { lastRangkuman ->
-            val apiKey = "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"
+            val apiKey = "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"
             val url = "https://api.groq.com/openai/v1/chat/completions"
 
             val roleContent = """
@@ -428,7 +428,7 @@ class Bercerita : AppCompatActivity() {
 
     private fun getRangkuman(question: String, callback: (String) -> Unit) {
         getLastRangkumanFromFirebase { lastRangkuman ->
-            val apiKey = "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"
+            val apiKey = "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"
             val url = "https://api.groq.com/openai/v1/chat/completions"
 
             val roleContent = """
@@ -444,7 +444,7 @@ class Bercerita : AppCompatActivity() {
     }
 
     private fun getKecemasan(question: String, callback: (String) -> Unit) {
-        val apiKey = "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"
+        val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
         val roleContent = "Berdasarkan cerita yang disampaikan, berikan skor kecemasan dari 1 sampai 100. Gunakan panduan berikut untuk penilaian:\n" +
                 "        1-10 untuk situasi tanpa kekhawatiran atau stres,\n" +
@@ -462,7 +462,7 @@ class Bercerita : AppCompatActivity() {
     }
 
     private fun getDepresi(question: String, callback: (String) -> Unit) {
-        val apiKey = "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"
+        val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
         val roleContent = "Berdasarkan cerita yang disampaikan, berikan skor depresi dari 1 sampai 100. Gunakan panduan berikut untuk penilaian:\n" +
                 "        1-10 untuk suasana hati yang sangat stabil dan positif,\n" +
@@ -480,7 +480,7 @@ class Bercerita : AppCompatActivity() {
     }
 
     private fun getStress(question: String, callback: (String) -> Unit) {
-        val apiKey = "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"
+        val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
         val roleContent = "Berdasarkan cerita yang disampaikan, berikan skor tingkat stres dari 1 sampai 100. Gunakan panduan berikut untuk penilaian:\n" +
                 "        1-10 untuk hampir tidak ada stres, merasa sangat tenang dan terkendali,\n" +
@@ -498,7 +498,7 @@ class Bercerita : AppCompatActivity() {
     }
 
     private fun getPoin(question: String, callback: (String) -> Unit) {
-        val apiKey = "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"
+        val apiKey = "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"
         val url = "https://api.groq.com/openai/v1/chat/completions"
         val roleContent = "Berdasarkan detail dari cerita yang disampaikan pengguna, berikan skor dari 1 sampai 100. Pertimbangkan faktor-faktor berikut dalam penilaian detail:\n" +
                 "        1-10 untuk cerita yang sangat umum atau minim detail,\n" +

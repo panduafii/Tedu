@@ -76,6 +76,8 @@
             android:name=".Kuisioner"
             android:exported="true" />
         <activity android:name=".Reward" />
+        <activity android:name=".Kesehatan"
+            android:exported="true" />
         <activity android:name=".Report" />
         <activity
             android:name=".Bercerita"

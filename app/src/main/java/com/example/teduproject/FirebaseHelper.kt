@@ -183,3 +183,17 @@ data class StoryData(
     val stress: Float,
     val timestamp: Long
 )
+
+data class UserData(
+    val nama: String = "",
+    val umur: Int = 0,
+    val jenis_kelamin: String = "",
+    val alergi: String = "",
+    val kondisi_kesehatan: List<String> = listOf(),
+    val pantangan: String = "",
+    val berat_badan: Float = 0f,
+    val tinggi_badan: Float = 0f,
+    val kondisi_umum: String = "",
+    val makanan_konsumsi: String = ""
+)
+

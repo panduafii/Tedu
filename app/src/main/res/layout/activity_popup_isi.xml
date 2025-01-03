@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/inputNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan nama"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:minHeight="48dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Umur"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/inputUmur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan umur"
+            android:inputType="number"
+            android:padding="12dp"
+            android:minHeight="48dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Kelamin"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+        <RadioGroup
+            android:id="@+id/radioGroupJenisKelamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbPria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pria" />
+
+            <RadioButton
+                android:id="@+id/rbWanita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wanita" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apakah Anda memiliki alergi makanan?"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <RadioGroup
+            android:id="@+id/radioGroupAlergiMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbAlergiTidak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak" />
+            <RadioButton
+                android:id="@+id/rbAlergiYa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ya" />
+        </RadioGroup>
+        <EditText
+            android:id="@+id/inputAlergiMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sebutkan alergi (jika ada)"
+            android:visibility="gone"
+            android:inputType="text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apakah Anda memiliki kondisi kesehatan tertentu?"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <CheckBox
+            android:id="@+id/cbDiabetes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diabetes" />
+        <CheckBox
+            android:id="@+id/cbHipertensi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hipertensi" />
+        <CheckBox
+            android:id="@+id/cbPenyakitJantung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penyakit Jantung" />
+        <EditText
+            android:id="@+id/inputKondisiLainnya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sebutkan kondisi lain (jika ada)"
+            android:inputType="text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apakah Anda memiliki pantangan makanan?"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <RadioGroup
+            android:id="@+id/radioGroupPantanganMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbPantanganTidak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak" />
+            <RadioButton
+                android:id="@+id/rbPantanganYa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ya" />
+        </RadioGroup>
+        <EditText
+            android:id="@+id/inputPantanganMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sebutkan pantangan (jika ada)"
+            android:visibility="gone"
+            android:inputType="text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Berat Badan (kg):"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/inputBeratBadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Masukkan berat badan" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tinggi Badan (cm):"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/inputTinggiBadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Masukkan tinggi badan" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ceritakan kondisi kesehatan Anda secara umum:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/inputKondisiKesehatan"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Tuliskan kondisi kesehatan Anda di sini"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:scrollbars="vertical" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ceritakan makanan yang biasanya Anda konsumsi:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/inputMakananKonsumsi"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Tuliskan makanan yang biasa Anda konsumsi di sini"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+</ScrollView>
