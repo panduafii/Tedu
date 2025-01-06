@@ -36,18 +36,59 @@
 
 
             <!-- Button with Icon -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp">
+
+                <Spinner
+                    android:id="@+id/spinnerUsers"
+                    android:layout_width="151dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/rounded_yellow"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageDisplay" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="80dp"
+                    app:layout_constraintBottom_toBottomOf="@id/spinnerUsers"
+                    app:layout_constraintEnd_toStartOf="@id/imageView3"
+                    app:layout_constraintTop_toTopOf="@id/spinnerUsers"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_profile" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintEnd_toEndOf="@id/spinnerUsers"
+                    app:layout_constraintTop_toTopOf="@id/spinnerUsers"
+                    app:srcCompat="@drawable/baseline_arrow_drop_down_24" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <ImageView
                 android:id="@+id/imageDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:rotation="90"
                 android:scaleType="centerCrop" />
 
             <!-- Scan Button -->
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/scanButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
@@ -58,17 +99,9 @@
                 app:icon="@drawable/scan"
                 app:iconGravity="textEnd"
                 app:iconTint="@android:color/white"
-                app:layout_constraintTop_toBottomOf="@id/imageDisplay"
+                app:layout_constraintEnd_toStartOf="@id/spinnerUsers"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/spinnerUsers" />
-
-            <Spinner
-                android:id="@+id/spinnerUsers"
-                android:layout_width="153dp"
-                android:layout_height="38dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/scanButton"
-                app:layout_constraintTop_toBottomOf="@id/imageDisplay"/>
+                app:layout_constraintTop_toBottomOf="@id/imageDisplay" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
