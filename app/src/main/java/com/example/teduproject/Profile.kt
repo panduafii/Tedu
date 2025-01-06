@@ -55,10 +55,10 @@ class Profile : AppCompatActivity() {
         val tvLogout: TextView = findViewById(R.id.tvLogout)
 //        val tvEditProfile: TextView = findViewById(R.id.tvEditProfile)
         val tvHapusBercerita: TextView = findViewById(R.id.tvHapusBercerita)
-        val informasiKesehatan: TextView = findViewById(R.id.InformasiKesehatan)
+        val analisisEmosi: TextView = findViewById(R.id.InformasiKesehatan)
 
-        informasiKesehatan.setOnClickListener {
-            val intent = Intent(this, Kesehatan::class.java)
+        analisisEmosi.setOnClickListener {
+            val intent = Intent(this, Report::class.java)
             startActivity(intent)
         }
 

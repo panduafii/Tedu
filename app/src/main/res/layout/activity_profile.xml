@@ -200,7 +200,7 @@
                         android:layout_marginTop="10dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:text="Informasi Kesehatan"
+                        android:text="Analisis Emosional"
                         android:textColor="@color/primary_text"
                         android:textSize="18dp"
                         android:textStyle="bold" />
