@@ -213,42 +213,6 @@
                         app:srcCompat="@drawable/fafa_happy" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rounded_yellow"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <ImageView
-                        android:layout_width="39dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:src="@drawable/user" />
-
-                    <TextView
-                        android:id="@+id/tvEditProfile"
-                        android:layout_width="240dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="10dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:text="Edit Profile"
-                        android:textColor="@color/primary_text"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/imageView9"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/fafa_happy" />
-                </LinearLayout>
-
                 <!-- Spacer (Pushing Logout Button to the Bottom) -->
                 <LinearLayout
                     android:layout_width="match_parent"
