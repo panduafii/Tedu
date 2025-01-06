@@ -53,7 +53,7 @@ class Profile : AppCompatActivity() {
         }
 
         val tvLogout: TextView = findViewById(R.id.tvLogout)
-        val tvEditProfile: TextView = findViewById(R.id.tvEditProfile)
+//        val tvEditProfile: TextView = findViewById(R.id.tvEditProfile)
         val tvHapusBercerita: TextView = findViewById(R.id.tvHapusBercerita)
         val informasiKesehatan: TextView = findViewById(R.id.InformasiKesehatan)
 
@@ -70,9 +70,9 @@ class Profile : AppCompatActivity() {
             finish()
         }
 
-        tvEditProfile.setOnClickListener {
-            Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show()
-        }
+//        tvEditProfile.setOnClickListener {
+//            Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show()
+//        }
 
         tvHapusBercerita.setOnClickListener {
             showDeleteConfirmationDialog()
