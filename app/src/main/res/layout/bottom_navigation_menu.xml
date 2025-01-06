@@ -87,7 +87,7 @@
 
             <!-- Menu Item 4 -->
             <LinearLayout
-                android:id="@+id/menu_report"
+                android:id="@+id/menu_datapengguna"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -95,9 +95,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_statistics"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:src="@drawable/ic_healthdata"
                     app:tint="@color/biru" />
             </LinearLayout>
 

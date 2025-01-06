@@ -53,11 +53,11 @@ object BottomNavigationHelper {
         }
 
 
-        // Menu Statistics
-        val menuReport = navigationView.findViewById<LinearLayout>(R.id.menu_report)
-        menuReport.setOnClickListener {
-            if (context !is Report) {
-                val intent = Intent(context, Report::class.java)
+        // Menu Statistics siganti jadi isi data pengguna
+        val menuKesehatan = navigationView.findViewById<LinearLayout>(R.id.menu_datapengguna)
+        menuKesehatan.setOnClickListener {
+            if (context !is Kesehatan) {
+                val intent = Intent(context, Kesehatan::class.java)
                 context.startActivity(intent)
                 // Ganti transisi animasi
                 (context as? AppCompatActivity)?.overridePendingTransition(
