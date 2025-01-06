@@ -2,14 +2,16 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- CardView as Bottom Navigation -->
-    <androidx.cardview.widget.CardView
+    <!-- MaterialCardView as Bottom Navigation -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/navigationCard"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_margin="16dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="2dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp"
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,34 +59,31 @@
             </LinearLayout>
 
             <!-- Menu Item 3 (Home with shadow) -->
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/menu_scan"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="#FFFFFF"
                 android:backgroundTint="#FFFFFF"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
-                        android:background="#FFFFFF"
-                        android:foregroundGravity="center"
-                        android:src="@drawable/scan"
+                        android:src="@drawable/scan2"
                         app:tint="@color/biru" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Menu Item 4 -->
             <LinearLayout
@@ -119,6 +118,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </merge>

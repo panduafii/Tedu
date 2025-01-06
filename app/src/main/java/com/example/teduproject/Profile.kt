@@ -3,6 +3,7 @@ package com.example.teduproject
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -30,6 +31,11 @@ class Profile : AppCompatActivity() {
 
         // Initialize Database Reference
         databaseReference = FirebaseDatabase.getInstance().getReference("users/${currentUser.uid}")
+
+        val backButton = findViewById<ImageView>(R.id.logo)
+        backButton.setOnClickListener {
+            finish() // Menutup aktivitas dan kembali ke layar sebelumnya
+        }
 
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)

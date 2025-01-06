@@ -17,6 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -24,11 +25,33 @@
         app:layout_constraintTop_toBottomOf="@id/include"
         app:layout_constraintBottom_toTopOf="@id/navigationCard">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+            <!-- Back Button and Reward Title -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <!-- Reward Title -->
+                <TextView
+                    android:id="@+id/rewardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Report"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -64,7 +87,7 @@
                     <Spinner
                         android:id="@+id/spinnerChartType"
                         android:layout_width="120dp"
-                        android:layout_height="40dp"
+                        android:layout_height="48dp"
                         android:background="@drawable/rounded_yellow"
                         android:gravity="center_horizontal"
                         android:paddingHorizontal="8dp"

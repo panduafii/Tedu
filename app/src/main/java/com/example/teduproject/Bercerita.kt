@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -31,6 +32,12 @@ class Bercerita : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bercerita)
 
+        // Tombol Back
+        val backButton = findViewById<ImageView>(R.id.logo)
+        backButton.setOnClickListener {
+            // Aksi untuk kembali ke aktivitas sebelumnya
+            finish() // Mengakhiri aktivitas saat ini dan kembali ke aktivitas sebelumnya
+        }
 
         // Ambil referensi TextView dari header_bar
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)

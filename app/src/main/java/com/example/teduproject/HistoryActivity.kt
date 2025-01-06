@@ -75,8 +75,8 @@ data class HistoryItem(
     val cerita: String? = "",
     val depresi: String? = "",
     val kecemasan: String? = "",
+    val stress: String? = "",
     val poin: String? = "",
     val rangkuman: String? = "",
-    val stress: String? = "",
     val timestamp: String? = ""
 )

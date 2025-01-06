@@ -16,32 +16,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHistory"
+    <!-- Layout untuk Back dan History Buttons -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginStart="25dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="25dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/helvetica"
-        android:gravity="start|center_vertical"
-        android:paddingStart="30dp"
-        android:text="History"
-        android:textColor="@color/biru1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/history"
-        app:iconGravity="end"
-        app:iconSize="25dp"
-        app:strokeColor="@color/biru"
-        app:strokeWidth="1dp"
-        app:iconTint="@color/biru"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include"
-         />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp">
+
+
+        <!-- History Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistory"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/helvetica"
+            android:gravity="start|center_vertical"
+            android:paddingStart="30dp"
+            android:text="History"
+            android:textColor="@color/biru1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/history"
+            app:iconGravity="end"
+            app:iconSize="25dp"
+            app:strokeColor="@color/biru"
+            app:strokeWidth="1dp"
+            app:iconTint="@color/biru" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -51,7 +62,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnHistory">
+        app:layout_constraintTop_toBottomOf="@id/buttonContainer">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,53 +74,54 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="2dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/characterImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="82dp"
+                    android:layout_height="83dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="16dp"
                     android:src="@drawable/mascot_putih" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <!-- Bubble Chat -->
+
+                    <!-- Polygon (Arrow) -->
                     <TextView
                         android:id="@+id/speechBubble"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/speech_bubble"
                         android:fontFamily="@font/helvetica"
                         android:padding="16dp"
                         android:text="Halo, kamu ingin bercerita apa hari ini?"
                         android:textColor="#1B415E"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.555"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <!-- Polygon (Arrow) -->
                     <ImageView
                         android:id="@+id/polygon"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:layout_marginStart="-8dp"
-                        android:layout_marginTop="-50dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="25dp"
                         android:translationY="-8dp"
-                        app:layout_constraintStart_toStartOf="@id/speechBubble"
-                        app:layout_constraintTop_toBottomOf="@id/speechBubble"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@drawable/polygon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
