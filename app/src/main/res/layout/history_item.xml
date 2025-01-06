@@ -13,24 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Story text"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="19sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textViewDepression"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Depression level"
-        android:textColor="#000000"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textViewAnxiety"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Anxiety level"
-        android:textColor="#000000"
-        android:textSize="14sp" />
 
 
     <TextView
@@ -51,12 +35,31 @@
         android:textSize="14sp" />
 
     <TextView
+        android:id="@+id/textViewDepression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Depression level"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textViewAnxiety"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anxiety level"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:visibility="invisible" />
+
+    <TextView
         android:id="@+id/textViewStress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stress level"
         android:textColor="#000000"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/textViewTimestamp"
