@@ -219,6 +219,7 @@ class Scan : AppCompatActivity() {
                 runOnUiThread {
                     val markwon = Markwon.create(this@Scan)
                     markwon.setMarkdown(textResultDisplay, response)
+                    processOpenAIResponse(response)
                     onComplete()
                 }
             } catch (e: Exception) {
@@ -250,7 +251,7 @@ class Scan : AppCompatActivity() {
               "content": [
                 {
                   "type": "text",
-                  "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan bandingkan dengan data kesehatan yang telah pengguna berikan, pastikan bahwa analisis yang kamu berikan sesuai dengan data pada Nutrition Facts atau Gizi pada gambar dengan data kesehatan pengguna. Pastikan kamu juga memberikan inferensi dan keluaran dari open ai bahwa makanan tersebut BISA dikonsumsi/HATI-HATI dikonsumsi/TIDAK BISA dikonsumsi, buatlah salah satu keluarab dari ketiga hal itu supaya di capslock. lalu pastikan juga kamu menulis dalam baha indonesia. tulisan dengan rapi dengan struktur yaitu Rekomendasi,informasi, Analisis, barulah kesimpulan. pastikan strukturnya tepat. jangan lupa sebutkan nama pengguna agar lebih intimate. jangan lupa bold inferensi agar mudah terbaca"
+                  "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan bandingkan dengan data kesehatan yang telah pengguna berikan, pastikan bahwa analisis yang kamu berikan sesuai dengan data pada Nutrition Facts atau Gizi pada gambar dengan data kesehatan pengguna. Pastikan kamu juga memberikan inferensi dan keluaran dari open ai bahwa makanan tersebut BISA DIKONSUMSI/HATI-HATI DIKONSUMSI/TIDAK BISA DIKONSUMSI, buatlah salah satu keluarab dari ketiga hal itu supaya di capslock. lalu pastikan juga kamu menulis dalam baha indonesia. tulisan dengan rapi dengan struktur yaitu Rekomendasi,informasi, Analisis, barulah kesimpulan. pastikan strukturnya tepat. jangan lupa sebutkan nama pengguna agar lebih intimate. jangan lupa bold inferensi agar mudah terbaca"
                 }
               ]
             },
@@ -311,5 +312,40 @@ class Scan : AppCompatActivity() {
             return messageObject.getString("content")
         }
     }
+
+    private fun processOpenAIResponse(response: String) {
+        val category = when {
+            response.contains("BISA DIKONSUMSI", ignoreCase = true) -> 1
+            response.contains("TIDAK BISA DIKONSUMSI", ignoreCase = true) -> 2
+            response.contains("HATI-HATI DIKONSUMSI", ignoreCase = true) -> 3
+            else -> 0 // Jika tidak ada kategori yang cocok
+        }
+
+        runOnUiThread {
+            findViewById<TextView>(R.id.textBoleh).visibility = if (category == 1) View.VISIBLE else View.GONE
+            findViewById<TextView>(R.id.textTidakBoleh).visibility = if (category == 2) View.VISIBLE else View.GONE
+            findViewById<TextView>(R.id.textHatiHati).visibility = if (category == 3) View.VISIBLE else View.GONE
+
+            Log.d("OpenAI", "Kategori yang dihasilkan: $category")
+        }
+
+        if (category != 0) {
+            saveResultToFirebase(category)
+        }
+    }
+
+    private fun saveResultToFirebase(category: Int) {
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val dbRef = FirebaseDatabase.getInstance().getReference("users/$currentUserId/lastResult")
+        dbRef.setValue(category).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("Firebase", "Hasil kategori berhasil disimpan: $category")
+            } else {
+                Log.e("Firebase", "Gagal menyimpan hasil kategori: ${task.exception?.message}")
+            }
+        }
+    }
+
+
 
 }
