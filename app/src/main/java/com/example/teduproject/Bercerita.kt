@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import io.noties.markwon.Markwon
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -147,49 +148,62 @@ class Bercerita : AppCompatActivity() {
 
             // Ambil nama pengguna dari Firebase
             FirebaseHelper.fetchUserName { userName ->
-                if (userName.isBlank()) {
-                    Toast.makeText(this, "Nama pengguna tidak ditemukan.", Toast.LENGTH_SHORT).show()
-                    progressBar.visibility = View.GONE // Sembunyikan ProgressBar jika gagal
-                    return@fetchUserName
-                }
+                val markwon = Markwon.create(this)
 
-                // Panggil semua API
                 getBalasan(question, userName) { response ->
                     if (response.isNotBlank() && response != "Empty response from server") {
                         hasilBalasan = response
-                        runOnUiThread { txtBalasan.text = response }
+                        runOnUiThread {
+                            markwon.setMarkdown(txtBalasan, response) // Gunakan Markwon untuk merender Markdown
+                        }
                     }
                 }
+
                 getRangkuman(question) { response ->
                     if (response.isNotBlank() && response != "Empty response from server") {
                         hasilRangkuman = response
-                        runOnUiThread { txtRangkuman.text = response }
+                        runOnUiThread {
+                            markwon.setMarkdown(txtRangkuman, response) // Gunakan Markwon
+                        }
                     }
                 }
+
                 getKecemasan(question) { response ->
                     if (response.isNotBlank() && response != "Empty response from server") {
                         hasilKecemasan = response
-                        runOnUiThread { txtKecemasan.text = response }
+                        runOnUiThread {
+                            markwon.setMarkdown(txtKecemasan, response) // Gunakan Markwon
+                        }
                     }
                 }
+
                 getDepresi(question) { response ->
                     if (response.isNotBlank() && response != "Empty response from server") {
                         hasilDepresi = response
-                        runOnUiThread { txtDepresi.text = response }
+                        runOnUiThread {
+                            markwon.setMarkdown(txtDepresi, response) // Gunakan Markwon
+                        }
                     }
                 }
+
                 getStress(question) { response ->
                     if (response.isNotBlank() && response != "Empty response from server") {
                         hasilStress = response
-                        runOnUiThread { txtStress.text = response }
+                        runOnUiThread {
+                            markwon.setMarkdown(txtStress, response) // Gunakan Markwon
+                        }
                     }
                 }
+
                 getPoin(question) { response ->
                     if (response.isNotBlank() && response != "Empty response from server") {
                         hasilPoin = response
-                        runOnUiThread { txtPoin.text = response }
+                        runOnUiThread {
+                            markwon.setMarkdown(txtPoin, response) // Gunakan Markwon
+                        }
                     }
                 }
+
 
                 checkResponses() // Mulai pengecekan hingga semua respons diterima
             }
@@ -424,12 +438,12 @@ class Bercerita : AppCompatActivity() {
             val url = "https://api.groq.com/openai/v1/chat/completions"
 
             val roleContent = """
-            Halo, $userName! Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna dalam bahasa Indonesia mengenai gangguan kecemasan, depresi, dan stres yang mungkin timbul dari cerita pengguna.
+            Halo, $userName! Kamu adalah asisten yang memberikan tanggapan terhadap input pengguna dalam BAHASA INDONESIA mengenai gangguan kecemasan, depresi, dan stres yang mungkin timbul dari cerita pengguna.
             Berikut rangkuman (summary) sebelumnya sebagai konteks tambahan:
             "$lastRangkuman"
                 
-                Dengan mempertimbangkan rangkuman tersebut, berikan jawaban yang tidak hanya informatif tetapi juga menunjukkan empati dan dukungan. Jawablah dalam bahasa Indonesia yang baik dan benar, dan usahakan untuk memberikan saran praktis atau langkah-langkah yang bisa diambil oleh pengguna untuk mengurangi perasaannya saat ini.
-            Gunakan nada yang menenangkan dan pastikan untuk validasi perasaan pengguna tanpa mengesampingkan perasaan tersebut. Jika situasinya memerlukan, arahkan pengguna untuk mencari bantuan profesional. jangan lupa untuk selalu menjawab menggunakan bahasa indonesia.
+                Dengan mempertimbangkan rangkuman tersebut, berikan jawaban yang tidak hanya informatif tetapi juga menunjukkan empati dan dukungan. Jawablah dalam BAHASA INDONESIA yang baik dan benar, dan usahakan untuk memberikan saran praktis atau langkah-langkah yang bisa diambil oleh pengguna untuk mengurangi perasaannya saat ini.
+            Gunakan nada yang menenangkan dan pastikan untuk validasi perasaan pengguna tanpa mengesampingkan perasaan tersebut. Jika situasinya memerlukan, arahkan pengguna untuk mencari bantuan profesional. jangan lupa untuk selalu menjawab menggunakan bahasa indonesia dan menyisipkan nama pengguna agar terkesan lebih intimate.
             """.trimIndent()
 
             getResponse(apiKey, url, roleContent, question, callback)
