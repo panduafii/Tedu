@@ -43,8 +43,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,8 +60,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvDataPribadi"
@@ -74,8 +77,8 @@
                         android:id="@+id/arrowDataPribadi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/circle_chevron_down"
-                        android:contentDescription="Expand" />
+                        android:contentDescription="Expand"
+                        android:src="@drawable/circle_chevron_down" />
                 </LinearLayout>
 
                 <!-- Detail Data Pribadi (default di-hide) -->
@@ -84,8 +87,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible"
-                    android:paddingTop="8dp">
+                    android:paddingTop="8dp"
+                    android:visibility="visible">
 
                     <Button
                         android:id="@+id/buttonIsi"
@@ -112,8 +115,10 @@
             android:id="@+id/cardDataOrangLain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,8 +148,8 @@
                         android:id="@+id/arrowDataOrangLain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/circle_chevron_down"
-                        android:contentDescription="Expand" />
+                        android:contentDescription="Expand"
+                        android:src="@drawable/circle_chevron_down" />
                 </LinearLayout>
 
                 <!-- Detail Data Orang Lain (default visible) -->
@@ -153,8 +158,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible"
-                    android:paddingTop="8dp">
+                    android:paddingTop="8dp"
+                    android:visibility="visible">
 
                     <Button
                         android:id="@+id/buttonTambah"
