@@ -38,6 +38,9 @@ class Profile : AppCompatActivity() {
             finish() // Menutup aktivitas dan kembali ke layar sebelumnya
         }
 
+        val headerView = findViewById<View>(R.id.include)
+        HeaderNavigationHelper.setupHeaderNavigation(this, headerView)
+
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 

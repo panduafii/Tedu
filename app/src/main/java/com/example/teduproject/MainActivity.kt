@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_activity)
 
+        val logo = findViewById<ImageView>(R.id.logo)
+        HeaderNavigationHelper.setupHeaderNavigation(this, logo)
+
         // Bottom Navigation setup
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)

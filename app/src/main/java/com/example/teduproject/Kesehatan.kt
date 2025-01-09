@@ -60,6 +60,8 @@ class Kesehatan : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().getReference("users/${currentUser.uid}/kesehatan")
 
 
+        val headerView = findViewById<View>(R.id.include)
+        HeaderNavigationHelper.setupHeaderNavigation(this, headerView)
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)

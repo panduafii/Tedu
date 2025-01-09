@@ -32,12 +32,13 @@ class Bercerita : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bercerita)
 
-
-        // Ambil referensi TextView dari header_bar
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
 
         // Panggil fungsi untuk mengambil total poin
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
+
+        val headerView = findViewById<View>(R.id.include)
+        HeaderNavigationHelper.setupHeaderNavigation(this, headerView)
 
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
