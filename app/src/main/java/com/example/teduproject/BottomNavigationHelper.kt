@@ -2,9 +2,16 @@ package com.example.teduproject
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 object BottomNavigationHelper {
 
@@ -42,18 +49,50 @@ object BottomNavigationHelper {
         menuScan.setOnClickListener {
             if (context !is Scan) {
                 val intent = Intent(context, Scan::class.java)
-                intent.putExtra("OPEN_CAMERA", true) // Tambahkan flag untuk membuka kamera langsung
-                context.startActivity(intent)
-                // Ganti transisi animasi
-                (context as? AppCompatActivity)?.overridePendingTransition(
-                    android.R.anim.fade_in,
-                    android.R.anim.fade_out
-                )
+                intent.putExtra("USE_DEFAULT_USER", true) // Tambahkan flag untuk membuka kamera langsung
+
+                val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+                if (currentUserId != null) {
+                    val userRef = FirebaseDatabase.getInstance().getReference("users/$currentUserId/kesehatan")
+                    userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (!snapshot.exists()) {
+                                Toast.makeText(context, "Data kesehatan tidak ditemukan di database", Toast.LENGTH_SHORT).show()
+                                Log.e("FirebaseDebug", "Data kesehatan tidak ditemukan di path 'users/$currentUserId/kesehatan'")
+                                return
+                            }
+
+                            for (dataSnapshot in snapshot.children) {
+                                val userData = dataSnapshot.getValue(UserData::class.java)
+                                Log.d("FirebaseDebug", "Data kesehatan ditemukan: ${userData?.nama}")
+
+                                if (userData != null && userData.nama.equals("Pandu", ignoreCase = true)) {
+                                    // Pastikan pengguna default ditemukan
+                                    intent.putExtra("SELECTED_USER", userData.nama)
+                                    break
+                                }
+                            }
+
+                            // Mulai activity dengan flag yang sudah diatur
+                            context.startActivity(intent)
+                            (context as? AppCompatActivity)?.overridePendingTransition(
+                                android.R.anim.fade_in,
+                                android.R.anim.fade_out
+                            )
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(context, "Gagal mengambil data: ${error.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                } else {
+                    Toast.makeText(context, "User not authenticated", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
 
-        // Menu Statistics siganti jadi isi data pengguna
+        // Menu Statistics diganti jadi isi data pengguna
         val menuKesehatan = navigationView.findViewById<LinearLayout>(R.id.menu_datapengguna)
         menuKesehatan.setOnClickListener {
             if (context !is Kesehatan) {
@@ -71,7 +110,7 @@ object BottomNavigationHelper {
         val menuProfile = navigationView.findViewById<LinearLayout>(R.id.menu_profile)
         menuProfile.setOnClickListener {
             if (context !is Profile) {
-                val intent = Intent(context,  Profile::class.java)
+                val intent = Intent(context, Profile::class.java)
                 context.startActivity(intent)
                 // Ganti transisi animasi
                 (context as? AppCompatActivity)?.overridePendingTransition(

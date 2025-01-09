@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.app.AlertDialog
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.CheckBox
 import android.widget.EditText
@@ -128,29 +129,31 @@ class Kesehatan : AppCompatActivity() {
         val userRef = FirebaseDatabase.getInstance().getReference("users/$currentUserId")
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(userSnapshot: DataSnapshot) {
-                val nameFromUserPath = userSnapshot.child("name").getValue(String::class.java)
-                if (nameFromUserPath.isNullOrEmpty()) {
+                val currentUserName = userSnapshot.child("name").getValue(String::class.java)
+                if (currentUserName.isNullOrEmpty()) {
                     Toast.makeText(this@Kesehatan, "Nama pengguna tidak ditemukan di database", Toast.LENGTH_SHORT).show()
+                    Log.e("FirebaseDebug", "Nama pengguna tidak ditemukan")
                     return
                 }
 
-                // Ambil data kesehatan
                 val kesehatanRef = userSnapshot.child("kesehatan")
                 userListPribadi.clear()
 
-                var isDataPribadiExist = false
                 for (dataSnapshot in kesehatanRef.children) {
                     val userData = dataSnapshot.getValue(UserData::class.java)
-                    if (userData != null && userData.nama == nameFromUserPath) {
+                    if (userData != null && userData.nama.equals(currentUserName, ignoreCase = true)) {
                         userListPribadi.add(userData)
-                        isDataPribadiExist = true
                     }
                 }
 
-                adapterPribadi.notifyDataSetChanged()
+                if (userListPribadi.isEmpty()) {
+                    Toast.makeText(this@Kesehatan, "Data pribadi tidak ditemukan!", Toast.LENGTH_SHORT).show()
+                    Log.e("FirebaseDebug", "Data pribadi tidak ditemukan")
+                } else {
+                    Log.d("FirebaseDebug", "Data pribadi ditemukan: ${userListPribadi.size} item.")
+                }
 
-                val buttonIsi = findViewById<Button>(R.id.buttonIsi)
-                buttonIsi.visibility = if (isDataPribadiExist) View.GONE else View.VISIBLE
+                adapterPribadi.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -158,6 +161,9 @@ class Kesehatan : AppCompatActivity() {
             }
         })
     }
+
+
+
     private fun fetchDataFromFirebase() {
         val currentUserId = firebaseAuth.currentUser?.uid
         if (currentUserId == null) {
@@ -168,21 +174,24 @@ class Kesehatan : AppCompatActivity() {
         val userRef = FirebaseDatabase.getInstance().getReference("users/$currentUserId")
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(userSnapshot: DataSnapshot) {
-                val nameFromUserPath = userSnapshot.child("name").getValue(String::class.java)
-                if (nameFromUserPath.isNullOrEmpty()) {
+                val currentUserName = userSnapshot.child("name").getValue(String::class.java)
+                if (currentUserName.isNullOrEmpty()) {
                     Toast.makeText(this@Kesehatan, "Nama pengguna tidak ditemukan di database", Toast.LENGTH_SHORT).show()
                     return
                 }
 
-                // Ambil data kesehatan yang tidak cocok dengan nama pengguna
                 val kesehatanRef = userSnapshot.child("kesehatan")
                 userListKesehatan.clear()
 
                 for (dataSnapshot in kesehatanRef.children) {
                     val userData = dataSnapshot.getValue(UserData::class.java)
-                    if (userData != null && userData.nama != nameFromUserPath) {
+                    if (userData != null && !userData.nama.equals(currentUserName, ignoreCase = true)) {
                         userListKesehatan.add(userData)
                     }
+                }
+
+                if (userListKesehatan.isEmpty()) {
+                    Toast.makeText(this@Kesehatan, "Tidak ada data kesehatan keluarga yang ditemukan!", Toast.LENGTH_SHORT).show()
                 }
 
                 adapterKesehatan.notifyDataSetChanged()
@@ -193,6 +202,8 @@ class Kesehatan : AppCompatActivity() {
             }
         })
     }
+
+
     private fun showPopupTambah() {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.activity_popup_tambah, null)

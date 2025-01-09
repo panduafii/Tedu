@@ -57,36 +57,53 @@ class Scan : AppCompatActivity() {
         const val REQUEST_IMAGE_CAPTURE = 1
         const val REQUEST_CAMERA_PERMISSION = 101
         const val API_URL = "https://api.openai.com/v1/chat/completions"
-        const val API_KEY = "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" // Ganti dengan API key Anda
+        const val API_KEY = "apikey" // Ganti dengan API key Anda
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
 
-
-        // Bottom Navigation setup
-        val navigationView = findViewById<View>(R.id.navigationCard)
-        BottomNavigationHelper.setupBottomNavigation(this, navigationView)
-
-
-        // Fetch and display streak data
-        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
-        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
-        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
-
-        // Fetch and display total points
-        val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
-        FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
-
+        // Inisialisasi elemen UI
+        spinnerUsers = findViewById(R.id.spinnerUsers)
         scanButton = findViewById(R.id.scanButton)
         imageDisplay = findViewById(R.id.imageDisplay)
         textResultDisplay = findViewById(R.id.textResultDisplay)
         progressBar = findViewById(R.id.progressBar)
-        spinnerUsers = findViewById(R.id.spinnerUsers)
 
+        // Setup Bottom Navigation
+        val navigationView = findViewById<View>(R.id.navigationCard)
+        BottomNavigationHelper.setupBottomNavigation(this, navigationView)
+
+        // Fetch Streak and Points
+        val streakAtas = findViewById<TextView>(R.id.StreakAtas)
+        val streakBawah = findViewById<TextView>(R.id.Streakbawah)
+        FirebaseHelper.fetchStreak(streakAtas, streakBawah, this)
+
+        val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
+        FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
+
+        // Ambil data intent
+        val selectedUserName = intent.getStringExtra("SELECTED_USER")
+        val useDefaultUser = intent.getBooleanExtra("USE_DEFAULT_USER", false)
+
+        if (!selectedUserName.isNullOrEmpty()) {
+            spinnerUsers.setSelection(userNames.indexOf(selectedUserName))
+            selectedUserData = userDetailsMap[selectedUserName]
+        }
+
+        // Fetch data pengguna dari Firebase
         fetchUserData()
 
+        // Jika flag USE_DEFAULT_USER diaktifkan, gunakan data default dan buka kamera
+        if (useDefaultUser) {
+            fetchDefaultUserData { defaultUser ->
+                selectedUserData = defaultUser
+                dispatchTakePictureIntent()
+            }
+        }
+
+        // Setup Spinner Listener
         spinnerUsers.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedName = userNames[position]
@@ -98,6 +115,7 @@ class Scan : AppCompatActivity() {
             }
         }
 
+        // Setup Scan Button
         scanButton.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
@@ -105,6 +123,7 @@ class Scan : AppCompatActivity() {
                 dispatchTakePictureIntent()
             }
         }
+
         // Periksa apakah intent memiliki flag untuk langsung membuka kamera
         val openCamera = intent.getBooleanExtra("OPEN_CAMERA", false)
         if (openCamera) {
@@ -114,8 +133,6 @@ class Scan : AppCompatActivity() {
                 dispatchTakePictureIntent()
             }
         }
-
-
     }
 
     private fun fetchUserData() {
@@ -153,6 +170,38 @@ class Scan : AppCompatActivity() {
             }
         })
     }
+
+    private fun fetchDefaultUserData(onComplete: (UserData?) -> Unit) {
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+        if (currentUserId == null) {
+            Log.d("Firebase", "User tidak terautentikasi")
+            Toast.makeText(this, "User tidak terautentikasi", Toast.LENGTH_SHORT).show()
+            onComplete(null)
+            return
+        }
+
+        val kesehatanRef = FirebaseDatabase.getInstance().getReference("users/$currentUserId/kesehatan")
+        kesehatanRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+                    val userData = dataSnapshot.getValue(UserData::class.java)
+                    if (userData != null && userData.nama.equals("Pandu", ignoreCase = true)) {
+                        Log.d("Firebase", "Data pengguna default ditemukan: ${userData.nama}")
+                        onComplete(userData)
+                        return
+                    }
+                }
+                Log.d("Firebase", "Data pengguna default tidak ditemukan")
+                onComplete(null)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Firebase", "Gagal mengambil data pengguna default: ${error.message}")
+                onComplete(null)
+            }
+        })
+    }
+
 
 
     private fun updateSpinner() {
@@ -207,7 +256,7 @@ class Scan : AppCompatActivity() {
 
                 val prompt = """
                 Berikut adalah data kesehatan saya, Nama: ${selectedUserData.nama}, Umur: ${selectedUserData.umur}, Berat Badan: ${selectedUserData.berat_badan} kg, Tinggi Badan: ${selectedUserData.tinggi_badan} cm, Alergi: ${selectedUserData.alergi.ifEmpty { "Tidak ada" }}, Pantangan: ${selectedUserData.pantangan.ifEmpty { "Tidak ada" }}, Kondisi Umum: ${selectedUserData.kondisi_umum}. Analisis gambar makanan diberikan.
-            """.trimIndent()
+                """.trimIndent()
                 Log.d("ImageAnalysis", "Prompt created: $prompt")
 
                 val response = sendImageToOpenAi(encodedImage, prompt)
@@ -240,43 +289,43 @@ class Scan : AppCompatActivity() {
         Log.d("OpenAI", "Prompt: $prompt")
 
         val jsonPayload = """
+    {
+      "model": "gpt-4o-mini",
+      "messages": [
         {
-          "model": "gpt-4o-mini",
-          "messages": [
+          "role": "system",
+          "content": [
             {
-              "role": "system",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan bandingkan dengan data kesehatan yang telah pengguna berikan, pastikan bahwa analisis yang kamu berikan sesuai dengan data pada Nutrition Facts atau Gizi pada gambar dengan data kesehatan pengguna. Pastikan kamu juga memberikan inferensi dan keluaran dari open ai bahwa makanan tersebut BISA DIKONSUMSI/HATI-HATI DIKONSUMSI/TIDAK BISA DIKONSUMSI, buatlah salah satu keluarab dari ketiga hal itu supaya di capslock. lalu pastikan juga kamu menulis dalam baha indonesia. tulisan dengan rapi dengan struktur yaitu Rekomendasi,informasi, Analisis, barulah kesimpulan. pastikan strukturnya tepat. jangan lupa sebutkan nama pengguna agar lebih intimate. jangan lupa bold inferensi agar mudah terbaca"
-                }
-              ]
+              "type": "text",
+              "text": "Kamu adalah seorang analis gizi. Diberikan gambar makanan kemasan dengan daftar informasi nutrisi yang tercetak pada kemasannya. Tolong analisis dan bandingkan dengan data kesehatan yang telah pengguna berikan, pastikan bahwa analisis yang kamu berikan sesuai dengan data pada Nutrition Facts atau Gizi pada gambar dengan data kesehatan pengguna. Pastikan kamu juga memberikan inferensi dan keluaran dari open ai bahwa makanan tersebut BISA DIKONSUMSI/HATI-HATI DIKONSUMSI/TIDAK BISA DIKONSUMSI, buatlah salah satu keluarab dari ketiga hal itu supaya di capslock. lalu pastikan juga kamu menulis dalam baha indonesia. tulisan dengan rapi dengan struktur yaitu Rekomendasi,informasi, Analisis, barulah kesimpulan. pastikan strukturnya tepat. jangan lupa sebutkan nama pengguna agar lebih intimate. jangan lupa bold inferensi agar mudah terbaca"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "data:image/jpeg;base64,$encodedImage"
+              }
             },
             {
-              "role": "user",
-              "content": [
-                {
-                  "type": "image_url",
-                  "image_url": {
-                    "url": "data:image/jpeg;base64,$encodedImage"
-                  }
-                },
-                {
-                  "type": "text",
-                  "text": "ini adalah gambar nutriton facts atau gizi dari makanan yang akan saya beli. Ini adalah data kesehatan saya $prompt"
-                }
-              ]
+              "type": "text",
+              "text": "ini adalah gambar nutriton facts atau gizi dari makanan yang akan saya beli. Ini adalah data kesehatan saya $prompt"
             }
-          ],
-          "response_format": {
-            "type": "text"
-          },
-          "temperature": 0.7,
-          "max_completion_tokens": 2548,
-          "top_p": 0.9,
-          "frequency_penalty": 0,
-          "presence_penalty": 0.5
-        }    
+          ]
+        }
+      ],
+      "response_format": {
+        "type": "text"
+      },
+      "temperature": 0.7,
+      "max_completion_tokens": 2548,
+      "top_p": 0.9,
+      "frequency_penalty": 0,
+      "presence_penalty": 0.5
+    }    
     """.trimIndent()
 
         Log.d("OpenAI", "Payload: $jsonPayload")
@@ -294,21 +343,30 @@ class Scan : AppCompatActivity() {
             .addHeader("Authorization", "Bearer $API_KEY")
             .build()
 
-        return client.newCall(request).execute().use { response ->
-            val responseBody = response.body?.string()
-            if (!response.isSuccessful || responseBody == null) {
+        return try {
+            val response = client.newCall(request).execute()
+            if (!response.isSuccessful) {
                 Log.e("OpenAI", "Gagal mengirim ke API: ${response.message}")
                 return "Error: ${response.message}"
             }
 
+            val responseBody = response.body?.string()
+            if (responseBody.isNullOrEmpty()) {
+                Log.e("OpenAI", "Respons dari server kosong.")
+                return "Error: Respons dari server kosong"
+            }
+
             val jsonResponse = JSONObject(responseBody)
-            Log.d("OpenAI", "Response JSON: $jsonResponse")
             val choicesArray = jsonResponse.getJSONArray("choices")
             val firstChoice = choicesArray.getJSONObject(0)
             val messageObject = firstChoice.getJSONObject("message")
-            return messageObject.getString("content")
+            messageObject.getString("content")
+        } catch (e: Exception) {
+            Log.e("OpenAI", "Error: ${e.localizedMessage}")
+            "Error: Tidak dapat memproses respons dari OpenAI"
         }
     }
+
 
     private fun processOpenAIResponse(response: String) {
         val category = when {
