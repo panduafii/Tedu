@@ -1,6 +1,7 @@
 package com.example.teduproject
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
@@ -55,10 +56,10 @@ class Scream : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scream)
 
-        val backButton = findViewById<ImageView>(R.id.logo)
-        backButton.setOnClickListener {
-            finish() // Kembali ke aktivitas sebelumnya
-        }
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish() // Mengakhiri aktivitas saat ini
 
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)

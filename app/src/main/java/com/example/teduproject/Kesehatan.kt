@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.CheckBox
 import android.widget.EditText
@@ -56,6 +57,11 @@ class Kesehatan : AppCompatActivity() {
             return
         }
         databaseReference = FirebaseDatabase.getInstance().getReference("users/${currentUser.uid}/kesehatan")
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish() // Mengakhiri aktivitas saat ini
 
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)

@@ -1,5 +1,6 @@
 package com.example.teduproject
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -33,12 +34,10 @@ class Report : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
-        // Inisialisasi tombol back
-        val backButton = findViewById<ImageView>(R.id.logo)
-        backButton.setOnClickListener {
-            // Tutup aktivitas saat tombol back ditekan
-            finish()
-        }
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish() // Mengakhiri aktivitas saat ini
 
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)
