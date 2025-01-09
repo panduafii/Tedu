@@ -34,10 +34,6 @@ class Report : AppCompatActivity() {
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-        finish() // Mengakhiri aktivitas saat ini
 
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)
         FirebaseHelper.fetchTotalPoin(textTotalPoin, this)

@@ -32,14 +32,6 @@ class Bercerita : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bercerita)
 
-        // Tombol Back
-        val backButton = findViewById<ImageView>(R.id.logo)
-        backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish() // Mengakhiri aktivitas saat ini
-        }
 
         // Ambil referensi TextView dari header_bar
         val textTotalPoin = findViewById<TextView>(R.id.textTotalPoin)

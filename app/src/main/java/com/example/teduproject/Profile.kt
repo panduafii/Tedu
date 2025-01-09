@@ -20,10 +20,6 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-        finish() // Mengakhiri aktivitas saat ini
 
         firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser

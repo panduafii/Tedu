@@ -58,10 +58,6 @@ class Kesehatan : AppCompatActivity() {
         }
         databaseReference = FirebaseDatabase.getInstance().getReference("users/${currentUser.uid}/kesehatan")
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-        finish() // Mengakhiri aktivitas saat ini
 
         val navigationView = findViewById<View>(R.id.navigationCard)
         BottomNavigationHelper.setupBottomNavigation(this, navigationView)
